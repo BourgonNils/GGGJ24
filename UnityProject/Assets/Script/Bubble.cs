@@ -7,8 +7,11 @@ public class Bubble : MonoBehaviour
     [SerializeField] float lifeTime = 3f;
     float timeBeforeDisapearing;
     int score = 5;
-    Symbole mySymbole ;
 
+
+    public SpriteRenderer symboleSpriteRendered;
+
+    Symbole mySymbole;
     ColorBubble myColor = ColorBubble.VIOLET;
 
     private void Start()
@@ -28,9 +31,13 @@ public class Bubble : MonoBehaviour
         }
     }
 
-    public void setSymbole(Symbole symbole)
+    public void createBubble(Symbole symbole,ColorBubble color)
     {
+        this.myColor = color;
         mySymbole = symbole;
+        this.GetComponent<SpriteRenderer>().color = GameManager.instance.correspondanceColor[color];
+        this.symboleSpriteRendered.sprite = GameManager.instance.correspondanceSprite[symbole];
+        this.symboleSpriteRendered.color = Color.black;
     }
 
     /*Retourne true si la bulle doit exploser*/
@@ -47,7 +54,7 @@ public class Bubble : MonoBehaviour
 
     bool shouldExplode(Player player, Direction dir)
     {
-        bool bonSymbole = GameManager.instance.correspondance[dir] == this.mySymbole;
+        bool bonSymbole = GameManager.instance.correspondanceSymbole[dir] == this.mySymbole;
         
         bool bonneCouleur = myColor == ColorBubble.VIOLET 
             || myColor == player.GetColorBubble();

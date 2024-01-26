@@ -99,6 +99,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lifeTime: 1.5
+  symboleSpriteRendered: {fileID: 6385107440735923681}
 --- !u!1 &1460445630582895227
 GameObject:
   m_ObjectHideFlags: 0

@@ -4,7 +4,7 @@ using UnityEngine;
 
 
 
-/*Chargé de faire apparaitre les bulles dans une zone (apparition plus choix de la bulle)  */
+/*Charg? de faire apparaitre les bulles dans une zone (apparition plus choix de la bulle)  */
 public class SpawnManager : MonoBehaviour
 {
 
@@ -38,6 +38,8 @@ public class SpawnManager : MonoBehaviour
     void spawnBuble()
     {
         GameObject bubble = Instantiate(tmp_buble);
+
+        bubble.GetComponent<Bubble>().createBubble(Symbole.SOURIRE, ColorBubble.BLEU);
 
         /*Changer la position de la bulle*/
         bubble.transform.position = getRandomPos();
