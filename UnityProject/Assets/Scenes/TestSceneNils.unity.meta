@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:UnityProject/Assets/Scenes/TestSceneNils.unity.meta
 guid: bdcf7ebccedc77b43be9bbab7a7a04f4
+========
+guid: 2da2579334f8743ba8cbf40c90d9c78e
+>>>>>>>> a3d2225a763cd6f545c998bddb455b431d67a8b0:UnityProject/Assets/Scenes/L0uxScene.unity.meta
 DefaultImporter:
   externalObjects: {}
   userData: 
