@@ -34,7 +34,7 @@ public class Bubble : MonoBehaviour
     }
 
     /*Retourne true si la bulle doit exploser*/
-    public bool receiveInput(int numeroJoueur, Direction dir)
+    public bool receiveInput(Player player, Direction dir)
     {
         if (this.shouldExplode( numeroJoueur,  dir))
         {   
