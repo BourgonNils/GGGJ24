@@ -44,11 +44,7 @@ public class GameManager : MonoBehaviour
             Destroy(this.gameObject);
         else
             instance = this;
-    }
 
-    // Start is called before the first frame update
-    void Start()
-    {
         this.correspondanceSprite =
             new Dictionary<Symbole, Sprite>() {
                 {Symbole.BANANE, this.banane},
@@ -56,6 +52,12 @@ public class GameManager : MonoBehaviour
                 {Symbole.PLUME, this.plume},
                 {Symbole.SOURIRE, this.sourire},
             };
+    }
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        
     }
 
     public int getScore()

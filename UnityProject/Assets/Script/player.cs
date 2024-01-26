@@ -7,7 +7,7 @@ public class Player : MonoBehaviour
 
     private int life = 6;
     public int playerId = 0;
-    [SerializeField] ColorBubble myColorBubble;
+    public ColorBubble myColorBubble;
 
 
     // Start is called before the first frame update
