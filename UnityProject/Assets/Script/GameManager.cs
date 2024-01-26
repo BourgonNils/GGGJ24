@@ -9,10 +9,18 @@ public class GameManager : MonoBehaviour
 
     public static GameManager instance;
 
-    public int score = 50;
+    int score = 50;
 
     public Player playerOne;
     public Player playerTwo;
+
+    public Dictionary<Direction, Symbole> correspondance =
+        new Dictionary<Direction, Symbole>(){ 
+        {Direction.HAUT, Symbole.PROUT },
+        {Direction.BAS, Symbole.SOURIRE },
+        {Direction.GAUCHE, Symbole.PLUME },
+        {Direction.DROITE, Symbole.BANANE },
+};
 
 
     private void Awake()
@@ -21,13 +29,17 @@ public class GameManager : MonoBehaviour
             Destroy(this.gameObject);
         else
             instance = this;
-        
     }
 
     // Start is called before the first frame update
     void Start()
     {
         
+    }
+
+    public int getScore()
+    {
+        return this.score;
     }
 
     // Update is called once per frame

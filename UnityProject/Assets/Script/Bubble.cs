@@ -7,7 +7,9 @@ public class Bubble : MonoBehaviour
     [SerializeField] float lifeTime = 3f;
     float timeBeforeDisapearing;
 
-    Direction myDirection = Direction.HAUT;
+    Symbole mySymbole ;
+
+    ColorBubble myColor = ColorBubble.VIOLET;
 
     private void Start()
     {
@@ -26,15 +28,15 @@ public class Bubble : MonoBehaviour
         }
     }
 
-    public void setDirection(Direction newDir)
+    public void setSymbole(Symbole symbole)
     {
-        myDirection = newDir;
+        mySymbole = symbole;
     }
 
     /*Retourne true si la bulle doit exploser*/
     public bool receiveInput(int numeroJoueur, Direction dir)
     {
-        if (this.shouldExplode())
+        if (this.shouldExplode( numeroJoueur,  dir))
         {   
             this.pop();
             return true;
@@ -42,9 +44,12 @@ public class Bubble : MonoBehaviour
         return false;
     }
 
-    bool shouldExplode()
+    bool shouldExplode(int numeroJoueur, Direction dir)
     {
-        return true;
+        bool bonSymbole = GameManager.instance.correspondance[dir] == this.mySymbole;
+        bool bonneCouleur = true;
+
+        return bonSymbole && bonneCouleur;
     }
 
     void pop()
