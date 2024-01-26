@@ -14,13 +14,28 @@ public class GameManager : MonoBehaviour
     public Player playerOne;
     public Player playerTwo;
 
-    public Dictionary<Direction, Symbole> correspondance =
+    [SerializeField] Sprite banane;
+    [SerializeField] Sprite prout;
+    [SerializeField] Sprite plume;
+    [SerializeField] Sprite sourire;
+
+    public Dictionary<Direction, Symbole> correspondanceSymbole =
         new Dictionary<Direction, Symbole>(){ 
-        {Direction.HAUT, Symbole.PROUT },
-        {Direction.BAS, Symbole.SOURIRE },
-        {Direction.GAUCHE, Symbole.PLUME },
-        {Direction.DROITE, Symbole.BANANE },
-};
+            {Direction.HAUT, Symbole.PROUT },
+            {Direction.BAS, Symbole.SOURIRE },
+            {Direction.GAUCHE, Symbole.PLUME },
+            {Direction.DROITE, Symbole.BANANE },
+         };
+
+    public Dictionary<ColorBubble, Color> correspondanceColor =
+      new Dictionary<ColorBubble, Color>(){
+            {ColorBubble.ROUGE, Color.red },
+            {ColorBubble.BLEU, Color.blue },
+            {ColorBubble.NOIR, Color.black },
+            {ColorBubble.VIOLET, Color.magenta },
+       };
+
+    public Dictionary<Symbole, Sprite> correspondanceSprite;
 
 
     private void Awake()
@@ -34,7 +49,13 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        this.correspondanceSprite =
+            new Dictionary<Symbole, Sprite>() {
+                {Symbole.BANANE, this.banane},
+                {Symbole.PROUT, this.prout},
+                {Symbole.PLUME, this.plume},
+                {Symbole.SOURIRE, this.sourire},
+            };
     }
 
     public int getScore()
@@ -79,4 +100,6 @@ public class GameManager : MonoBehaviour
     {
         //fin de la parti
     }
+
+  
 }
