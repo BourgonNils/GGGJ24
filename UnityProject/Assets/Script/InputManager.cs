@@ -7,6 +7,10 @@ public class InputManager : MonoBehaviour
 
     public static InputManager instance;
 
+
+    private int score = 10;
+
+
     List<Bubble> allBubbles = new List<Bubble>();
 
     private void Awake()
@@ -18,27 +22,26 @@ public class InputManager : MonoBehaviour
     }
 
 
-    /*Appelé par le joueur*/
-    void onInput(int numeroJoueur, Direction dir)
+    /*Appel? par le joueur*/
+    public void onInput(Player player, Direction dir)
     {
-        if (numeroJoueur < 1 || numeroJoueur > 2)
-            throw new System.Exception("Num joueur invalide ");
-
         bool bubbleExploded = false;
         foreach(Bubble bubble in allBubbles)
         { 
-            bubbleExploded = bubble.receiveInput(numeroJoueur, dir);
+            bubbleExploded = bubble.receiveInput(player, dir);
             if (bubbleExploded)
                 return;
         }
-        this.misinput(numeroJoueur);
+        this.misinput(player);
     }
     
-    void misinput(int numeroJoueur)
+    void misinput(Player player)
     {
         /*Faire perdre des points au joueur en question*/
-    }
+        GameManager.instance.UpdateScore(player, score);
 
+    }
+    
     public void addBubble(Bubble newBubble)
     {
         this.allBubbles.Add(newBubble);
