@@ -73,27 +73,43 @@ public class GameManager : MonoBehaviour
 
     }
 
-    public void UpdateScore(Player player,int score)
+
+    
+
+    void onUpdateScore()
     {
-        this.score += score;
-
         bool endGame = false;
-
-
-        if(this.score <= 0)
+        if (this.score <= 0)
         {
             endGame = this.playerOne.Laught();
             this.score = 50;
-        }else if(this.score >= 100){
+        }
+        else if(this.score >= 100){
             endGame = this.playerTwo.Laught();
             this.score = 50;
         }
 
-
-
         if (endGame)
             this.endParty();
-     
+    }
+
+    public void gainScore(Player player,int score)
+    {
+        if (player == playerOne)
+            this.score += score;
+        else
+            this.score -= score;
+
+
+        this.onUpdateScore();
+
+        Debug.Log("score" + this.score);
+    }
+
+
+    public void looseScore(Player player,int score)
+    {
+        this.gainScore(player, -score);
     }
 
 

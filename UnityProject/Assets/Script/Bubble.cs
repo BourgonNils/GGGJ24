@@ -6,7 +6,6 @@ public class Bubble : MonoBehaviour
 {
     [SerializeField] float lifeTime = 3f;
     float timeBeforeDisapearing;
-    int score = 5;
 
 
     public SpriteRenderer symboleSpriteRendered;
@@ -46,7 +45,6 @@ public class Bubble : MonoBehaviour
         if (this.shouldExplode(player,dir))
         {   
             this.pop();
-            GameManager.instance.UpdateScore(player, this.score);
             return true;
         }
         return false;

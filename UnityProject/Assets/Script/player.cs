@@ -30,26 +30,21 @@ public class Player : MonoBehaviour
 
     void OnHaut()
     {
-        
-        Debug.Log(gameObject.name + " haut");
         InputManager.instance.onInput(this, Direction.HAUT);
     }
     
     void OnBas()
     {
-        Debug.Log(gameObject.name + " bas");
         InputManager.instance.onInput(this, Direction.BAS);
     }
 
     void OnGauche()
     {
-        Debug.Log(gameObject.name + " gauche");
         InputManager.instance.onInput(this, Direction.GAUCHE);
     }
 
     void OnDroite()
     {
-        Debug.Log(gameObject.name + " droite");
         InputManager.instance.onInput(this, Direction.DROITE);
     }
 }

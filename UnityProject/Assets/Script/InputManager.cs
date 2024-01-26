@@ -30,7 +30,10 @@ public class InputManager : MonoBehaviour
         { 
             bubbleExploded = bubble.receiveInput(player, dir);
             if (bubbleExploded)
+            {
+                GameManager.instance.gainScore(player, this.score);
                 return;
+            }
         }
         this.misinput(player);
     }
@@ -38,7 +41,8 @@ public class InputManager : MonoBehaviour
     void misinput(Player player)
     {
         /*Faire perdre des points au joueur en question*/
-        GameManager.instance.UpdateScore(player, score);
+        Debug.Log(player.name + " miss input");
+        GameManager.instance.looseScore(player, score);
 
     }
     
