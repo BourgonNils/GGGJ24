@@ -7,22 +7,20 @@ public class Player : MonoBehaviour
 
     private int life = 6;
     public int playerId = 0;
-
+    [SerializeField] ColorBubble myColorBubble;
 
 
     // Start is called before the first frame update
     void Start()
     {
-       
+       if(myColorBubble != ColorBubble.ROUGE && myColorBubble != ColorBubble.BLEU)
+            throw new System.Exception("Couleur de joueur non valide");
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-      
+    public ColorBubble GetColorBubble() 
+    { 
+        return myColorBubble; 
     }
-
-
     public bool Laught()
     {
         this.life--;

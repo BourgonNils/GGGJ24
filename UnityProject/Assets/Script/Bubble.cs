@@ -6,7 +6,7 @@ public class Bubble : MonoBehaviour
 {
     [SerializeField] float lifeTime = 3f;
     float timeBeforeDisapearing;
-
+    int score = 5;
     Symbole mySymbole ;
 
     ColorBubble myColor = ColorBubble.VIOLET;
@@ -36,18 +36,21 @@ public class Bubble : MonoBehaviour
     /*Retourne true si la bulle doit exploser*/
     public bool receiveInput(Player player, Direction dir)
     {
-        if (this.shouldExplode( numeroJoueur,  dir))
+        if (this.shouldExplode(player,dir))
         {   
             this.pop();
+            GameManager.instance.UpdateScore(player, this.score);
             return true;
         }
         return false;
     }
 
-    bool shouldExplode(int numeroJoueur, Direction dir)
+    bool shouldExplode(Player player, Direction dir)
     {
         bool bonSymbole = GameManager.instance.correspondance[dir] == this.mySymbole;
-        bool bonneCouleur = true;
+        
+        bool bonneCouleur = myColor == ColorBubble.VIOLET 
+            || myColor == player.GetColorBubble();
 
         return bonSymbole && bonneCouleur;
     }
