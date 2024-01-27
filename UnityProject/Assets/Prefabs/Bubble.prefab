@@ -102,7 +102,7 @@ MonoBehaviour:
   correspondanceSprite: {fileID: 11400000, guid: e7595510665924fd5aaa18e1f8c85ebe, type: 2}
   symboleSpriteRendered: {fileID: 6385107440735923681}
   lifeTime: 2
-  shrinkSpeed: 1
+  shrinkSpeed: 1.5
   maxScale: 1.2
   scaleDuration: 0.3
 --- !u!1 &1460445630582895227

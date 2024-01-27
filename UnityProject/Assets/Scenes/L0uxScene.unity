@@ -175,6 +175,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2332463550641026994, guid: 6ee2a13bd3fe6b84cab6b303be4561d8, type: 3}
+      propertyPath: myColorBubble
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4255867806200977043, guid: 6ee2a13bd3fe6b84cab6b303be4561d8, type: 3}
       propertyPath: m_LocalScale.x
       value: 1
@@ -214,6 +218,10 @@ PrefabInstance:
     - target: {fileID: 4694367478331567158, guid: 6ee2a13bd3fe6b84cab6b303be4561d8, type: 3}
       propertyPath: m_LocalPosition.y
       value: -1.62
+      objectReference: {fileID: 0}
+    - target: {fileID: 8425873844228607600, guid: 6ee2a13bd3fe6b84cab6b303be4561d8, type: 3}
+      propertyPath: myColorBubble
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
