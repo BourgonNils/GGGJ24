@@ -7,17 +7,24 @@ using UnityEngine.UI;
 public class BarreDeRire : MonoBehaviour
 {
 
-    Slider mySlider;
+    [SerializeField] Slider mainSlider;
+    [SerializeField] Slider errosionGauche;
+    [SerializeField] Slider errosionDroite;
 
     private void Start()
     {
-        mySlider = GetComponent<Slider>();
+        mainSlider = GetComponent<Slider>();
     }
 
     public void updateScore(int newScore)
     {
-        mySlider.value = newScore;
+        mainSlider.value = newScore;
     }
 
+    public void updateErrosion(float newErrosion)
+    {
+        errosionDroite.value = newErrosion;
+        errosionGauche.value = newErrosion;
+    }
 
 }

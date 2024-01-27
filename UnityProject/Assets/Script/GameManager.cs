@@ -13,6 +13,12 @@ public class GameManager : MonoBehaviour
     public Player playerTwo;
     private BarreDeRire mySlider;
 
+    float percentErrosion = 0;
+    float maxErrosion = 40;
+    float valueErroded = 0 ;
+
+
+
     private void Awake()
     {
         if (instance != null)
@@ -25,6 +31,8 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         mySlider = FindFirstObjectByType<BarreDeRire>();
+        if (mySlider == null)
+            throw new System.Exception("Pas de barre de rire ?");
     }
 
     public int getScore()
@@ -35,21 +43,33 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-
-
+        this.addErrosion( 0.0003f * Time.deltaTime); 
     }
 
+    void addErrosion(float newErrosion)
+    {
+        
+        if (newErrosion >1 || newErrosion < 0 )
+            throw new System.Exception("Doit être compris entre 0 et 1");
+
+        this.percentErrosion += newErrosion;
+
+        if (percentErrosion > 1)
+            percentErrosion = 1;
+
+        valueErroded = maxErrosion * this.percentErrosion;
+        mySlider.updateErrosion(valueErroded);
+    }
 
     void onUpdateScore()
     {
         bool endGame = false;
-        if (this.score <= 0)
+        if (this.score <= (0 +valueErroded))
         {
             endGame = this.playerOne.Laught();
             this.score = 50;
         }
-        else if(this.score >= 100){
+        else if(this.score >= 100 - valueErroded){
             endGame = this.playerTwo.Laught();
             this.score = 50;
         }
