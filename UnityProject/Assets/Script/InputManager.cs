@@ -97,6 +97,7 @@ public class InputManager : MonoBehaviour
     {
         allBubbles.ForEach(bulle => Destroy(bulle.gameObject));
         allBubbles.Clear();
+        isListeningToInput = false;
     }
 
     private Symbole getRandomSymbole(List<Symbole> symboles)

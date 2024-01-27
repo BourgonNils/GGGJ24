@@ -261,7 +261,7 @@ Animator:
   m_GameObject: {fileID: 5068148473630984817}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 77431b894e3470344b870fba832a2dd3, type: 2}
+  m_Controller: {fileID: 22100000, guid: 419f5bb3a1580d04babd7827b2663e4e, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -283,7 +283,7 @@ GameObject:
   - component: {fileID: 5807333469510561960}
   - component: {fileID: 5552592817066242423}
   - component: {fileID: 4885018266837685459}
-  - component: {fileID: 1167235852688704453}
+  - component: {fileID: 3307614425246516824}
   m_Layer: 0
   m_Name: BaffeGenerator
   m_TagString: Untagged
@@ -379,7 +379,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &1167235852688704453
+--- !u!114 &3307614425246516824
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -388,25 +388,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 6599392096397976046}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 820d791f5302a9544acfe3113058b2b5, type: 3}
+  m_Script: {fileID: 11500000, guid: cc9bf65fac4bd4e4eba3110ec6f4fd93, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  eventToReactTo: 2
-  reaction:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 5552592817066242423}
-        m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
-        m_MethodName: SetTrigger
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: baffe
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!1 &6701988300996562925
 GameObject:
   m_ObjectHideFlags: 0

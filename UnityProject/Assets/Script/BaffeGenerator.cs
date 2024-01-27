@@ -3,22 +3,43 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Animations;
 
-public class BaffeGenerator : ListenerGameEvent
+public class BaffeGenerator : MonoBehaviour
 {
+    public static BaffeGenerator instance;
+
     Animator myAnimator;
 
-    void Awake()
+    public void Awake()
     {
-        base.Start();
+        if (instance == null)
+            instance = this;
+        else
+            Destroy(this.gameObject);
+
+    }
+
+    private void Start()
+    {
         myAnimator = GetComponent<Animator>();
+        if (myAnimator == null)
+            throw new System.Exception("necessite un animator");
     }
 
-
-    public override void notifygameEvent(GameManager.GameEvent elEvento)
+    public void baffe(int playerId, float delay=0f)
     {
-        if(elEvento == GameManager.GameEvent.ENDROUND)
+        if(delay != 0)
         {
-            myAnimator.SetTrigger("baffe");
+            StartCoroutine(baffeDelayed(playerId,delay));
+            return;
         }
+        myAnimator.SetTrigger("baffe" + playerId);
     }
+    
+    IEnumerator baffeDelayed(int playerId,float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        baffe(playerId);
+    }
+
+
 }

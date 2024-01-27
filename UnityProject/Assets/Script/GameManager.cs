@@ -51,7 +51,7 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        this.addErrosion(0.05f * Time.deltaTime);
+        this.addErrosion(0.01f * Time.deltaTime);
     }
 
     void addErrosion(float newErrosion)
@@ -115,13 +115,15 @@ public class GameManager : MonoBehaviour
         this.score = 50;
         this.percentErrosion = 0;
         mySlider.updateScore(this.score);
+        Debug.Log("Test");
         StartCoroutine(waitThenLaunchNewRound());
     }
-    IEnumerator waitThenLaunchNewRound()
+    public IEnumerator waitThenLaunchNewRound()
     {
-        yield return new WaitForSeconds(1.2f);
+        yield return new WaitForSeconds(2.5f);
+
         TextPrompter.instance.printText("GO !");
-        notifyListeners(GameEvent.STARTROUND,3f);
+        notifyListeners(GameEvent.STARTROUND,1f);
     }
 
     private void endParty()
