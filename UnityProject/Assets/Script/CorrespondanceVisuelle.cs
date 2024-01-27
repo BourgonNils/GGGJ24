@@ -4,25 +4,26 @@ using UnityEngine;
 
 public class CorrespondanceVisuelle : MonoBehaviour
 {
+    [SerializeField] CorrespondanceSprite correspondance;
     [SerializeField] SpriteRenderer symboleHaut;
     [SerializeField] SpriteRenderer symboleBas;
     [SerializeField] SpriteRenderer symboleGauche;
-
     [SerializeField] SpriteRenderer symboleDroite;
+
+
 
 
     private void Start()
     {
-        symboleHaut.sprite =  getCorresponding(Direction.HAUT);
-        symboleBas.sprite = getCorresponding(Direction.BAS);
-        symboleGauche.sprite = getCorresponding(Direction.GAUCHE);
-        symboleDroite.sprite = getCorresponding(Direction.DROITE);
+        this.symboleHaut.sprite =  getCorresponding(Direction.HAUT);
+        this.symboleBas.sprite = getCorresponding(Direction.BAS);
+        this.symboleGauche.sprite = getCorresponding(Direction.GAUCHE);
+        this.symboleDroite.sprite = getCorresponding(Direction.DROITE);
     }
 
     Sprite getCorresponding(Direction dir)
     {
-        Symbole symbole = GameManager.instance.correspondanceSymbole[dir];
-        return GameManager.instance.correspondanceSprite[symbole];
+        return this.correspondance.getKey(InputManager.instance.correspondanceDirection[dir]);
     }
 
 }

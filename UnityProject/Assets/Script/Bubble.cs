@@ -4,11 +4,14 @@ using UnityEngine;
 
 public class Bubble : MonoBehaviour
 {
+    [SerializeField] CorrespondanceCouleur correspondanceCouleur;
+    [SerializeField] CorrespondanceSprite correspondanceSprite;
     [SerializeField] float lifeTime = 3f;
     float timeBeforeDisapearing;
+    [SerializeField] SpriteRenderer symboleSpriteRendered;
 
 
-    public SpriteRenderer symboleSpriteRendered;
+  
 
     Symbole mySymbole;
     ColorBubble myColor = ColorBubble.VIOLET;
@@ -34,9 +37,8 @@ public class Bubble : MonoBehaviour
     {
         this.myColor = color;
         mySymbole = symbole;
-        this.GetComponent<SpriteRenderer>().color = GameManager.instance.correspondanceColor[color];
-        this.symboleSpriteRendered.sprite = GameManager.instance.correspondanceSprite[symbole];
-        this.symboleSpriteRendered.color = Color.black;
+        this.GetComponent<SpriteRenderer>().color = this.correspondanceCouleur.getKey(color);
+        this.symboleSpriteRendered.sprite = this.correspondanceSprite.getKey(symbole);
     }
 
     /*Retourne true si la bulle doit exploser*/
@@ -52,7 +54,7 @@ public class Bubble : MonoBehaviour
 
     bool shouldExplode(Player player, Direction dir)
     {
-        bool bonSymbole = GameManager.instance.correspondanceSymbole[dir] == this.mySymbole;
+        bool bonSymbole = InputManager.instance.correspondanceDirection[dir] == this.mySymbole;
         
         bool bonneCouleur = myColor == ColorBubble.VIOLET 
             || myColor == player.GetColorBubble();

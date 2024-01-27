@@ -12,6 +12,16 @@ public class CorrespondanceSprite : ScriptableObject
     {
         return correspondances.Where(correspondance => correspondance.key == key).First().valeur;
     }
+
+    public int count()
+    {
+        return this.correspondances.Count();
+    }
+
+    public Symbole symboleAtIndex(int index)
+    {
+        return this.correspondances.ElementAt(index).key;
+    }
 }
 
 

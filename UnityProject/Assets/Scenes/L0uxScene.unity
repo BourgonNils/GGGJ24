@@ -248,6 +248,30 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2838107570469370771, guid: c477d1a2d482e464ebc2b390b70f4862, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.08
+      objectReference: {fileID: 0}
+    - target: {fileID: 4719342378577554550, guid: c477d1a2d482e464ebc2b390b70f4862, type: 3}
+      propertyPath: correspondance
+      value: 
+      objectReference: {fileID: 11400000, guid: e7595510665924fd5aaa18e1f8c85ebe, type: 2}
+    - target: {fileID: 4760404191359022288, guid: c477d1a2d482e464ebc2b390b70f4862, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.062
+      objectReference: {fileID: 0}
+    - target: {fileID: 5849634908861279160, guid: c477d1a2d482e464ebc2b390b70f4862, type: 3}
+      propertyPath: m_Color.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5849634908861279160, guid: c477d1a2d482e464ebc2b390b70f4862, type: 3}
+      propertyPath: m_Color.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5849634908861279160, guid: c477d1a2d482e464ebc2b390b70f4862, type: 3}
+      propertyPath: m_Color.r
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6071477278938049702, guid: c477d1a2d482e464ebc2b390b70f4862, type: 3}
       propertyPath: m_Name
       value: ZoneCorrespondance
@@ -379,40 +403,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a2a4c2b18768cdc4f8adb673f907ce6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  correspondanceSprite: {fileID: 11400000, guid: e7595510665924fd5aaa18e1f8c85ebe, type: 2}
   zoneToSpawn: {fileID: 274112377}
   tmp_buble: {fileID: 400637377583848021, guid: bb7930daefb8bd1499a064348a53cf58, type: 3}
   spawnBubleEvery: 2
---- !u!1 &1271868938
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1271868939}
-  m_Layer: 0
-  m_Name: GameObject
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1271868939
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1271868938}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.6980247, y: 1.0758511, z: -0.046577483}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1367294294
 GameObject:
   m_ObjectHideFlags: 0
@@ -705,10 +699,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerOne: {fileID: 1513994211}
   playerTwo: {fileID: 1367294296}
-  banane: {fileID: 7482667652216324306, guid: 75f5f34dc1b5347e0b8351032682f224, type: 3}
-  prout: {fileID: 3625043607559282579, guid: 19fb86013d8c24d6cb8410c0aadf30fa, type: 3}
-  plume: {fileID: -2135585597343286014, guid: 5aa8b770bc43046bc8d993d0d5b7f4a5, type: 3}
-  sourire: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -719,4 +709,3 @@ SceneRoots:
   - {fileID: 1513994212}
   - {fileID: 1367294297}
   - {fileID: 358153502}
-  - {fileID: 1271868939}

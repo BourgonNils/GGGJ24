@@ -8,6 +8,7 @@ using System.Linq;
 public class SpawnManager : MonoBehaviour
 {
 
+    [SerializeField] CorrespondanceSprite correspondanceSprite;
     [SerializeField] BoxCollider2D zoneToSpawn;
     [SerializeField] GameObject tmp_buble;
     [SerializeField] float spawnBubleEvery = 2f;
@@ -46,11 +47,9 @@ public class SpawnManager : MonoBehaviour
     void spawnBuble()
     {
         GameObject bubble = Instantiate(tmp_buble);
-
-
   
-        int randomIndex = UnityEngine.Random.Range(0,GameManager.instance.correspondanceSprite.Count);
-        Symbole cleAleatoire = GameManager.instance.correspondanceSprite.Keys.ElementAt(randomIndex);
+        int randomIndex = UnityEngine.Random.Range(0,this.correspondanceSprite.count());
+        Symbole cleAleatoire = this.correspondanceSprite.symboleAtIndex(randomIndex);
 
         if (playerIdSpawn % 2 == 0)
         {
