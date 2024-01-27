@@ -46,7 +46,7 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        this.addErrosion( 0.0003f * Time.deltaTime); 
+        this.addErrosion(0.05f * Time.deltaTime);
     }
 
     void addErrosion(float newErrosion)
@@ -61,24 +61,29 @@ public class GameManager : MonoBehaviour
             percentErrosion = 1;
 
         valueErroded = maxErrosion * this.percentErrosion;
+        checkIfDead();
         mySlider.updateErrosion(valueErroded);
     }
 
     void onUpdateScore()
     {
+        checkIfDead();
+        mySlider.updateScore(this.score);
+    }
+
+    public void checkIfDead()
+    {
         bool endGame = false;
-        if (this.score <= (0 +valueErroded))
+        if (this.score <= (0 + valueErroded))
         {
             endGame = this.playerOne.Laught();
             resetRound();
         }
-        else if(this.score >= 100 - valueErroded){
+        else if (this.score >= 100 - valueErroded)
+        {
             endGame = this.playerTwo.Laught();
             resetRound();
         }
-
-        mySlider.updateScore(this.score);
-
         if (endGame)
             this.endParty();
     }
@@ -107,6 +112,8 @@ public class GameManager : MonoBehaviour
         this.notifyListeners(GameEvent.ENDROUND);
         this.score = 50;
         this.percentErrosion = 0;
+        mySlider.updateScore(this.score);
+
     }
 
     private void endParty()
