@@ -6,8 +6,11 @@ public class Bubble : MonoBehaviour
 {
     [SerializeField] CorrespondanceCouleur correspondanceCouleur;
     [SerializeField] CorrespondanceSprite correspondanceSprite;
-    [SerializeField] float lifeTime = 3f;
     [SerializeField] SpriteRenderer symboleSpriteRendered;
+    [SerializeField] float lifeTime = 3f;
+    [SerializeField] float shrinkSpeed = 2f;
+    [SerializeField] private float maxScale = 1.2f;
+    [SerializeField] private float scaleDuration = 0.3f;
 
 
     private float timeBeforeDisapearing;
@@ -15,22 +18,18 @@ public class Bubble : MonoBehaviour
     private float shrinktime;
 
 
-
-
-
-    Symbole mySymbole;
-    ColorBubble myColor = ColorBubble.VIOLET;
+    private Symbole mySymbole;
+    private ColorBubble myColor = ColorBubble.VIOLET;
 
     private void Start()
     {
         timeBeforeDisapearing = lifeTime;
-        this.shrinktime = 2f * lifeTime;
+        this.shrinktime = lifeTime*shrinkSpeed;
         spriteRenderer = GetComponent<SpriteRenderer>();
         StartCoroutine(ShrinkOverTime());
     }
 
    
-
     // Update is called once per frame
     void Update()
     {
@@ -53,8 +52,9 @@ public class Bubble : MonoBehaviour
     public bool receiveInput(Player player, Direction dir)
     {
         if (this.shouldExplode(player,dir))
-        {   
-            this.pop();
+        {
+            StopAllCoroutines();
+            StartCoroutine(ScaleAnimation());
             return true;
         }
         return false;
@@ -111,5 +111,32 @@ public class Bubble : MonoBehaviour
 
         // Assurez-vous que l'échelle est à zéro à la fin de la coroutine
         transform.localScale = Vector3.zero;
+    }
+
+    IEnumerator ScaleAnimation()
+    {
+        float timer = 0f;
+        Vector3 originalScale = transform.localScale;
+
+        while (timer < scaleDuration)
+        {
+            float scale = Mathf.Lerp(1f, maxScale, timer / scaleDuration);
+            transform.localScale = originalScale * scale;
+            timer += Time.deltaTime;
+            yield return null;
+        }
+
+        timer = 0f;
+
+        while (timer < (scaleDuration) * 0.75f)
+        {
+            float scale = Mathf.Lerp(1f, 0f, timer / (scaleDuration*0.75f));
+            transform.localScale = originalScale * scale;
+            timer += Time.deltaTime;
+            yield return null;
+        }
+
+        transform.localScale = Vector3.zero;
+        this.pop();
     }
 }

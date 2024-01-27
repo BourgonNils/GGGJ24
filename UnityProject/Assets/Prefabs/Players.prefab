@@ -82,7 +82,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxLife: 3
   playerId: 1
-  myColorBubble: 0
+  myColorBubble: 1
 --- !u!114 &4306117003959253692
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -195,10 +195,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4694367478331567158}
-  - component: {fileID: 5449776640065046084}
   - component: {fileID: 934280743029542422}
   - component: {fileID: 24046708072625842}
   - component: {fileID: 3582228049281235568}
+  - component: {fileID: 2332463550641026994}
   m_Layer: 0
   m_Name: PlayerOne
   m_TagString: Untagged
@@ -221,21 +221,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1312308162090072171}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5449776640065046084
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6701988300996562925}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3edc9984a06ae43ec84361c543817aa4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxLife: 3
-  playerId: 1
-  myColorBubble: 1
 --- !u!114 &934280743029542422
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -339,3 +324,18 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &2332463550641026994
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6701988300996562925}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3edc9984a06ae43ec84361c543817aa4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxLife: 3
+  playerId: 0
+  myColorBubble: 0
