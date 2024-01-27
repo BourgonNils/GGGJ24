@@ -135,6 +135,7 @@ public class InputManager : MonoBehaviour
             Destroy(symbole);
         }
         allBubbles.Clear();
+        isListeningToInput = false;
     }
 
     private Symbole getRandomSymbole(List<Symbole> symboles)

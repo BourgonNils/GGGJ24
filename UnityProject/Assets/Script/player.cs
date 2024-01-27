@@ -43,6 +43,8 @@ public class Player : MonoBehaviour
     public bool Laught()
     {
         this.life--;
+        myAnimator.SetTrigger("laught");
+        BaffeGenerator.instance.baffe(this.playerId,1);
         return this.life == 0;
     }
 
