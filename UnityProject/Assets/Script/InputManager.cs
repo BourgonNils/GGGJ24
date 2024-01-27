@@ -13,6 +13,7 @@ public class InputManager : MonoBehaviour
 
     private int score = 10;
     private List<Bubble> allBubbles = new List<Bubble>();
+    private List<Ballon> allBallons = new List<Ballon>();
     bool isListeningToInput = false;
 
   
@@ -40,19 +41,42 @@ public class InputManager : MonoBehaviour
         if (!isListeningToInput)
             return;
 
+
+        this.detecteBubble(player, dir);
+        this.detecteBallon(player, dir);
+        
+    }
+
+    private void  detecteBubble(Player player, Direction dir) {
         bool bubbleExploded = false;
-        foreach(Bubble bubble in allBubbles)
-        { 
+        foreach (Bubble bubble in allBubbles)
+        {
             bubbleExploded = bubble.receiveInput(player, dir);
             if (bubbleExploded)
             {
                 GameManager.instance.gainScore(player, this.score);
             }
         }
-        if(!bubbleExploded )
+        if (!bubbleExploded)
             this.misinput(player);
     }
-    
+
+    private void detecteBallon(Player player, Direction dir)
+    {
+        bool balloonExploded = false;
+
+        foreach (Ballon ballon in allBallons)
+        {
+            balloonExploded = ballon.receiveInput(player, dir);
+            if (balloonExploded)
+            {
+                GameManager.instance.gainScore(player, this.score);
+            }
+        }
+        if (!balloonExploded)
+            this.misinput(player);
+    }
+
     void misinput(Player player)
     {
         /*Faire perdre des points au joueur en question*/
@@ -70,7 +94,17 @@ public class InputManager : MonoBehaviour
     {
         this.allBubbles.Remove(bubbleToRemove);
     }
-    
+
+    public void addBallon(Ballon newBallon)
+    {
+        this.allBallons.Add(newBallon);
+    }
+
+    public void removeBallon(Ballon ballonToRemove)
+    {
+        this.allBallons.Remove(ballonToRemove);
+    }
+
     public void setListeningToInput(bool shouldListen)
     {
         isListeningToInput = shouldListen;
@@ -95,7 +129,11 @@ public class InputManager : MonoBehaviour
 
     public void onEndRound()
     {
-        allBubbles.ForEach(bulle => Destroy(bulle.gameObject));
+        GameObject[] symboles = GameObject.FindGameObjectsWithTag("symbole");
+        foreach(var symbole in symboles)
+        {
+            Destroy(symbole);
+        }
         allBubbles.Clear();
     }
 

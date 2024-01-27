@@ -10,10 +10,13 @@ public class SpawnManager : MonoBehaviour
 
     [SerializeField] CorrespondanceSprite correspondanceSprite;
     [SerializeField] BoxCollider2D zoneToSpawn;
+    [SerializeField] BoxCollider2D zoneToSpawnBallon;
     [SerializeField] GameObject tmp_buble;
+    [SerializeField] GameObject tmp_ballon;
     [SerializeField] float spawnBubleEvery = 2f;
-    [SerializeField] float mixtSpawnRate = 20f;
-    [SerializeField] float doubleSpawnRate = 20f;
+    [SerializeField] float spawVioletRate = 20f;
+    [SerializeField] float spawnBallonEvery = 2f;
+    [SerializeField] float spawBallonRate = 20f;
 
     bool shouldSpawnBubble = false;
     private Player playerOne;
@@ -21,18 +24,24 @@ public class SpawnManager : MonoBehaviour
 
 
     Bounds boundsZoneToSpawn;
+    Bounds boundsZoneBallon;
 
     float minDistanceBetweenBubbles = 1f;
     private int playerIdSpawn = 0;
     private float timer;
+    private float timerViolet;
+    private float timerBallon;
+    private float spawnVioletEvry;
     private Vector3 lastSpawnPosition = Vector3.zero;
 
 
     private void Start()
     {
         boundsZoneToSpawn = zoneToSpawn.bounds;
+        boundsZoneBallon = zoneToSpawnBallon.bounds;
         this.playerOne = GameManager.instance.playerOne;
         this.playerTwo = GameManager.instance.playerTwo;
+        this.spawnVioletEvry = this.spawnBubleEvery + this.spawnBubleEvery / 2;
     }
 
     // Update is called once per frame
@@ -40,12 +49,28 @@ public class SpawnManager : MonoBehaviour
     {
         if (!shouldSpawnBubble)
             return;
+
         timer -= Time.deltaTime;
-        if(timer <= 0)
+        timerViolet -= Time.deltaTime;
+        timerBallon -= Time.deltaTime;
+
+        if (timer <= 0)
         {
             timer = spawnBubleEvery;
             spawnBuble();
         }
+
+        if(timerViolet <= 0)
+        {
+            timerViolet = spawnVioletEvry;
+            this.spawnBubbleViolet();
+        }
+
+        /*if(timerBallon <= 0)
+        {
+            timerBallon = spawnBallonEvery;
+            this.spawnBallon();
+        }*/
     }
 
 
@@ -56,37 +81,54 @@ public class SpawnManager : MonoBehaviour
         int randomIndex = UnityEngine.Random.Range(0,this.correspondanceSprite.count());
         Symbole symbole = this.correspondanceSprite.symboleAtIndex(randomIndex);
 
-        this.lastSpawnPosition = playerIdSpawn % 2 == 0 ? this.testH(symbole, playerOne.myColorBubble) : this.testH(symbole, playerTwo.myColorBubble);
+        this.lastSpawnPosition = playerIdSpawn % 2 == 0 ? this.createBubble(symbole, playerOne.myColorBubble) : this.createBubble(symbole, playerTwo.myColorBubble);
 
         playerIdSpawn++;
 
-
-        if (UnityEngine.Random.Range(0, 100) <= doubleSpawnRate)
-            this.spawnBuble();
-
-
+       
     }
 
-    public Vector3 testH(Symbole symbole,ColorBubble color)
+    void spawnBubbleViolet()
+    {
+        if (UnityEngine.Random.Range(0, 100) <= this.spawVioletRate)
+        {
+            int randomIndex = UnityEngine.Random.Range(0, this.correspondanceSprite.count());
+            Symbole symbole = this.correspondanceSprite.symboleAtIndex(randomIndex);
+            this.createBubble(symbole, ColorBubble.VIOLET);
+        }
+    }
+
+    public Vector3 createBubble(Symbole symbole,ColorBubble color)
     {
         GameObject bubble = Instantiate(tmp_buble);
-
-        if (UnityEngine.Random.Range(0, 100) <= mixtSpawnRate)
-            color = ColorBubble.VIOLET;
-
         bubble.GetComponent<Bubble>().createBubble(symbole, color);
         Vector3 bubulePosition = this.getRandomPos();
         bubble.transform.position = bubulePosition;
-
         return bubulePosition;
+    }
 
+    public void spawnBallon()
+    {
+        if (UnityEngine.Random.Range(0, 100) <= this.spawBallonRate)
+        {
+            int randomIndex = UnityEngine.Random.Range(0, this.correspondanceSprite.count());
+            int randomColor = UnityEngine.Random.Range(0,1);
+
+            ColorBubble color = randomColor == 0 ? playerOne.myColorBubble : playerTwo.myColorBubble;
+            Symbole symbole = this.correspondanceSprite.symboleAtIndex(randomIndex);
+            GameObject ballon = Instantiate(tmp_ballon);
+            ballon.GetComponent<Ballon>().createBallon(symbole, color);
+            Vector3 ballonPosition = this.randomPosBallon();
+            ballon.transform.position = ballonPosition;
+        }
     }
 
     public void setSpawnerActive(bool newState) 
     {
         this.shouldSpawnBubble = newState;
     }
-    Vector3 getRandomPos()
+
+    private Vector3 getRandomPos()
     {
         Vector3 randomPosition = Vector3.zero;
 
@@ -111,5 +153,14 @@ public class SpawnManager : MonoBehaviour
 
 
         return randomPosition;
+    }
+
+    private Vector3 randomPosBallon()
+    {
+        return new Vector3(
+               UnityEngine.Random.Range(boundsZoneBallon.min.x, boundsZoneBallon.max.x),
+               UnityEngine.Random.Range(boundsZoneBallon.min.y, boundsZoneBallon.max.y),
+               0
+            );
     }
 }

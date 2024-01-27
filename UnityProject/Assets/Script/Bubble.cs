@@ -51,8 +51,11 @@ public class Bubble : MonoBehaviour
     /*Retourne true si la bulle doit exploser*/
     public bool receiveInput(Player player, Direction dir)
     {
+
         if (this.shouldExplode(player,dir))
         {
+            InputManager.instance.removeBubble(this);
+            this.GetComponent<SpriteRenderer>().color = this.correspondanceCouleur.getKey(player.myColorBubble);
             StopAllCoroutines();
             StartCoroutine(ScaleAnimation());
             return true;
@@ -79,11 +82,6 @@ public class Bubble : MonoBehaviour
     private void Awake()
     {
         InputManager.instance.addBubble(this);
-    }
-
-    private void OnDestroy()
-    {
-        InputManager.instance.removeBubble(this);
     }
 
     IEnumerator ShrinkOverTime()
