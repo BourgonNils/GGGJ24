@@ -11,7 +11,9 @@ GameObject:
   - component: {fileID: 7427633116217950204}
   - component: {fileID: 3154584557142292708}
   - component: {fileID: 6871806642580872871}
+  - component: {fileID: 8066641905192163854}
   - component: {fileID: 1435731876805841394}
+  - component: {fileID: 3628151046746876334}
   m_Layer: 0
   m_Name: SpawnManager
   m_TagString: Untagged
@@ -50,6 +52,8 @@ MonoBehaviour:
   zoneToSpawn: {fileID: 0}
   tmp_buble: {fileID: 400637377583848021, guid: bb7930daefb8bd1499a064348a53cf58, type: 3}
   spawnBubleEvery: 1
+  mixtSpawnRate: 20
+  doubleSpawnRate: 20
 --- !u!114 &6871806642580872871
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -76,7 +80,35 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
-          m_BoolArgument: 1
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &8066641905192163854
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1170832128507335928}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 820d791f5302a9544acfe3113058b2b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  eventToReactTo: 0
+  reaction:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3154584557142292708}
+        m_TargetAssemblyTypeName: SpawnManager, Assembly-CSharp
+        m_MethodName: setSpawnerActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1435731876805841394
 MonoBehaviour:
@@ -104,7 +136,35 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
-          m_BoolArgument: 0
+          m_BoolArgument: 1
+        m_CallState: 2
+--- !u!114 &3628151046746876334
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1170832128507335928}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 820d791f5302a9544acfe3113058b2b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  eventToReactTo: 3
+  reaction:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3154584557142292708}
+        m_TargetAssemblyTypeName: SpawnManager, Assembly-CSharp
+        m_MethodName: setSpawnerActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
         m_CallState: 2
 --- !u!1 &1430508115605134118
 GameObject:
@@ -153,6 +213,7 @@ MonoBehaviour:
   playerOne: {fileID: 0}
   playerTwo: {fileID: 0}
   mySlider: {fileID: 0}
+  zoneCorrespondance: {fileID: 0}
 --- !u!1 &2571783156539191922
 GameObject:
   m_ObjectHideFlags: 0
@@ -165,6 +226,7 @@ GameObject:
   - component: {fileID: 5709094341328496377}
   - component: {fileID: 4925173186313491933}
   - component: {fileID: 7872190004879481097}
+  - component: {fileID: 7400116076575974989}
   m_Layer: 0
   m_Name: InputManager
   m_TagString: Untagged
@@ -225,9 +287,37 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
-          m_BoolArgument: 0
+          m_BoolArgument: 1
         m_CallState: 2
 --- !u!114 &7872190004879481097
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2571783156539191922}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 820d791f5302a9544acfe3113058b2b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  eventToReactTo: 0
+  reaction:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 5709094341328496377}
+        m_TargetAssemblyTypeName: InputManager, Assembly-CSharp
+        m_MethodName: setListeningToInput
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &7400116076575974989
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -245,15 +335,15 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 5709094341328496377}
         m_TargetAssemblyTypeName: InputManager, Assembly-CSharp
-        m_MethodName: setListeningToInput
-        m_Mode: 6
+        m_MethodName: onEndRound
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
-          m_BoolArgument: 1
+          m_BoolArgument: 0
         m_CallState: 2
 --- !u!1 &6974883306371591397
 GameObject:

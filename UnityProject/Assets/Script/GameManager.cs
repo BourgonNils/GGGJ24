@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
     public Player playerOne;
     public Player playerTwo;
     [SerializeField] BarreDeRire mySlider;
+    [SerializeField] CorrespondanceVisuelle zoneCorrespondance;
 
 
     float percentErrosion = 0;
@@ -20,7 +21,8 @@ public class GameManager : MonoBehaviour
     float valueErroded = 0;
 
     List<ListenerGameEvent> listeners = new List<ListenerGameEvent>();
-    public enum GameEvent { ENDROUND,GAMEOVER, STARTGAME};
+
+    public enum GameEvent { GAMEOVER, STARTGAME, ENDROUND, STARTROUND,};
 
     private void Awake()
     {
@@ -35,7 +37,10 @@ public class GameManager : MonoBehaviour
     {
         if (mySlider == null)
             throw new System.Exception("Pas de barre de rire ?");
-        notifyListeners(GameEvent.STARTGAME);
+        if(zoneCorrespondance == null )
+            throw new System.Exception("Pas de zone correspondance ?");
+
+        startNewGame();
     }
 
     public int getScore()
@@ -94,11 +99,7 @@ public class GameManager : MonoBehaviour
             this.score += score;
         else
             this.score -= score;
-
-
         this.onUpdateScore();
-
-        Debug.Log("score" + this.score);
     }
 
 
@@ -110,10 +111,17 @@ public class GameManager : MonoBehaviour
     void resetRound()
     {
         this.notifyListeners(GameEvent.ENDROUND);
+        
         this.score = 50;
         this.percentErrosion = 0;
         mySlider.updateScore(this.score);
-
+        StartCoroutine(waitThenLaunchNewRound());
+    }
+    IEnumerator waitThenLaunchNewRound()
+    {
+        yield return new WaitForSeconds(1.2f);
+        TextPrompter.instance.printText("GO !");
+        notifyListeners(GameEvent.STARTROUND,3f);
     }
 
     private void endParty()
@@ -125,8 +133,11 @@ public class GameManager : MonoBehaviour
     {
         playerOne.resetLife();
         playerTwo.resetLife();
-        notifyListeners(GameEvent.STARTGAME);
+        zoneCorrespondance.onStart();
+        
+        notifyListeners(GameEvent.STARTGAME,4f);
     }
+
 
     /********Listeners********/
     public void addListener(ListenerGameEvent listener)
@@ -139,11 +150,24 @@ public class GameManager : MonoBehaviour
         this.listeners.Remove(listener);
     }
 
-    void notifyListeners(GameEvent eventToFire)
+    public void notifyListeners(GameEvent eventToFire, float delay = 0f)
     {
+        if (delay != 0)
+        {
+            StartCoroutine(waitThenFireEvent(eventToFire, delay));
+            return;
+        }
+
+        Debug.Log("Game Event " + eventToFire);
         foreach(ListenerGameEvent listener in listeners)
         {
             listener.notifygameEvent(eventToFire);
         }
+    }
+
+    IEnumerator waitThenFireEvent(GameEvent eventToFire, float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        notifyListeners(eventToFire);
     }
 }

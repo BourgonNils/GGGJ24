@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Animations;
+
 
 public class CorrespondanceVisuelle : MonoBehaviour
 {
@@ -24,6 +26,12 @@ public class CorrespondanceVisuelle : MonoBehaviour
     Sprite getCorresponding(Direction dir)
     {
         return this.correspondance.getKey(InputManager.instance.correspondanceDirection[dir]);
+    }
+
+
+    public void onStart()
+    {
+        GetComponent<Animator>().SetTrigger("onStart");
     }
 
 }

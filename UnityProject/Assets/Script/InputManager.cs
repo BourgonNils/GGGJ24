@@ -13,7 +13,7 @@ public class InputManager : MonoBehaviour
 
     private int score = 10;
     private List<Bubble> allBubbles = new List<Bubble>();
-    bool isListeningToInput = true;
+    bool isListeningToInput = false;
 
     private void Awake()
     {
@@ -84,6 +84,12 @@ public class InputManager : MonoBehaviour
             correspondanceDirection.Add(direction,addedSymbole);
         }
 
+    }
+
+    public void onEndRound()
+    {
+        allBubbles.ForEach(bulle => Destroy(bulle.gameObject));
+        allBubbles.Clear();
     }
 
     private Symbole getRandomSymbole(List<Symbole> symboles)
