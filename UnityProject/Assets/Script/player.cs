@@ -12,13 +12,17 @@ public class Player : MonoBehaviour
 
     private Animator myAnimator;
 
+    private void Awake()
+    {
+        myAnimator = GetComponent<Animator>();
+    }
+
     // Start is called before the first frame update
     void Start()
     {
        if(myColorBubble != ColorBubble.ROUGE && myColorBubble != ColorBubble.BLEU)
             throw new System.Exception("Couleur de joueur non valide");
         
-        myAnimator = GetComponent<Animator>();
         if(myAnimator ==null)
             throw new System.Exception("Le joueur a besoin d'un animator");
 

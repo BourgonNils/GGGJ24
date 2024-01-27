@@ -8,13 +8,13 @@ public class ListenerGameEvent :MonoBehaviour
 
     [SerializeField] GameManager.GameEvent eventToReactTo;
     [SerializeField] UnityEvent reaction;
-    public void notifygameEvent(GameManager.GameEvent elEvento)
+    public virtual void notifygameEvent(GameManager.GameEvent elEvento)
     {
         if(elEvento ==eventToReactTo)
             reaction.Invoke();
     }
 
-    private void Start()
+    protected void Start()
     {
         GameManager.instance.addListener(this);
     }
