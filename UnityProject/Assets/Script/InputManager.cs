@@ -13,6 +13,7 @@ public class InputManager : MonoBehaviour
 
     private int score = 10;
     private List<Bubble> allBubbles = new List<Bubble>();
+    bool isListeningToInput = true;
 
     private void Awake()
     {
@@ -28,6 +29,9 @@ public class InputManager : MonoBehaviour
     /*Appel? par le joueur*/
     public void onInput(Player player, Direction dir)
     {
+        if (!isListeningToInput)
+            return;
+
         bool bubbleExploded = false;
         foreach(Bubble bubble in allBubbles)
         { 
@@ -59,7 +63,11 @@ public class InputManager : MonoBehaviour
     {
         this.allBubbles.Remove(bubbleToRemove);
     }
-
+    
+    public void setListeningToInput(bool shouldListen)
+    {
+        isListeningToInput = shouldListen;
+    }
 
     public void randomizeSymbole() {
 

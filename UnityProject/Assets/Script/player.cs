@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-
-    private int life = 6;
-    public int playerId = 0;
+    [SerializeField] [Range(1,6)] private int maxLife = 3;
+    private int life ;
+    [Range(0, 1)] public int playerId = 0;
     public ColorBubble myColorBubble;
 
 
@@ -15,6 +15,13 @@ public class Player : MonoBehaviour
     {
        if(myColorBubble != ColorBubble.ROUGE && myColorBubble != ColorBubble.BLEU)
             throw new System.Exception("Couleur de joueur non valide");
+
+        resetLife();
+    }
+
+    public void resetLife()
+    {
+        life = maxLife;
     }
 
     public ColorBubble GetColorBubble() 
@@ -24,6 +31,7 @@ public class Player : MonoBehaviour
     public bool Laught()
     {
         this.life--;
+        Debug.Log("Player " + playerId + " laught, life remaining " + this.life);
         return this.life == 0;
     }
 

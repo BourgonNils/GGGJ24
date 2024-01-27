@@ -13,7 +13,7 @@ public class SpawnManager : MonoBehaviour
     [SerializeField] GameObject tmp_buble;
     [SerializeField] float spawnBubleEvery = 2f;
 
-
+    bool shouldSpawnBubble = false;
     private Player playerOne;
     private Player playerTwo;
 
@@ -35,6 +35,8 @@ public class SpawnManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (!shouldSpawnBubble)
+            return;
         timer -= Time.deltaTime;
         if(timer <= 0)
         {
@@ -67,7 +69,10 @@ public class SpawnManager : MonoBehaviour
         bubble.transform.position = getRandomPos();
     }
 
-
+    public void setSpawnerActive(bool newState) 
+    {
+        this.shouldSpawnBubble = newState;
+    }
     Vector3 getRandomPos()
     {
         return new Vector3(

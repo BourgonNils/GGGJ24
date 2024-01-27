@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class GameManager : MonoBehaviour
 {
 
@@ -11,13 +12,15 @@ public class GameManager : MonoBehaviour
 
     public Player playerOne;
     public Player playerTwo;
-    private BarreDeRire mySlider;
+    [SerializeField] BarreDeRire mySlider;
+
 
     float percentErrosion = 0;
     float maxErrosion = 40;
-    float valueErroded = 0 ;
+    float valueErroded = 0;
 
-
+    List<ListenerGameEvent> listeners = new List<ListenerGameEvent>();
+    public enum GameEvent { ENDROUND,GAMEOVER, STARTGAME};
 
     private void Awake()
     {
@@ -30,9 +33,9 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        mySlider = FindFirstObjectByType<BarreDeRire>();
         if (mySlider == null)
             throw new System.Exception("Pas de barre de rire ?");
+        notifyListeners(GameEvent.STARTGAME);
     }
 
     public int getScore()
@@ -67,11 +70,11 @@ public class GameManager : MonoBehaviour
         if (this.score <= (0 +valueErroded))
         {
             endGame = this.playerOne.Laught();
-            this.score = 50;
+            resetRound();
         }
         else if(this.score >= 100 - valueErroded){
             endGame = this.playerTwo.Laught();
-            this.score = 50;
+            resetRound();
         }
 
         mySlider.updateScore(this.score);
@@ -99,12 +102,41 @@ public class GameManager : MonoBehaviour
         this.gainScore(player, -score);
     }
 
-
+    void resetRound()
+    {
+        this.notifyListeners(GameEvent.ENDROUND);
+        this.score = 50;
+        this.percentErrosion = 0;
+    }
 
     private void endParty()
     {
-        //fin de la parti
+        notifyListeners(GameEvent.GAMEOVER);
     }
 
-  
+    public void startNewGame()
+    {
+        playerOne.resetLife();
+        playerTwo.resetLife();
+        notifyListeners(GameEvent.STARTGAME);
+    }
+
+    /********Listeners********/
+    public void addListener(ListenerGameEvent listener)
+    {
+        this.listeners.Add(listener);
+    }
+
+    public void removeListener(ListenerGameEvent listener)
+    {
+        this.listeners.Remove(listener);
+    }
+
+    void notifyListeners(GameEvent eventToFire)
+    {
+        foreach(ListenerGameEvent listener in listeners)
+        {
+            listener.notifygameEvent(eventToFire);
+        }
+    }
 }
