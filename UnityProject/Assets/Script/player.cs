@@ -43,9 +43,6 @@ public class Player : MonoBehaviour
     public bool Laught()
     {
         this.life--;
-        Debug.Log("Player " + playerId + " laught, life remaining " + this.life);
-        myAnimator.SetInteger("HP", life);
-
         return this.life == 0;
     }
 

@@ -15,6 +15,8 @@ public class InputManager : MonoBehaviour
     private List<Bubble> allBubbles = new List<Bubble>();
     bool isListeningToInput = false;
 
+  
+
     private void Awake()
     {
         if(instance != null)
@@ -23,6 +25,12 @@ public class InputManager : MonoBehaviour
             instance = this;
 
         this.randomizeSymbole();
+    }
+
+
+    private void Update()
+    {
+      
     }
 
 
@@ -38,12 +46,11 @@ public class InputManager : MonoBehaviour
             bubbleExploded = bubble.receiveInput(player, dir);
             if (bubbleExploded)
             {
-                Debug.Log(player.name + " " + dir);
                 GameManager.instance.gainScore(player, this.score);
-                return;
             }
         }
-        this.misinput(player);
+        if(!bubbleExploded )
+            this.misinput(player);
     }
     
     void misinput(Player player)
