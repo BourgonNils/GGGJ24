@@ -12,6 +12,8 @@ public class SpawnManager : MonoBehaviour
     [SerializeField] BoxCollider2D zoneToSpawn;
     [SerializeField] GameObject tmp_buble;
     [SerializeField] float spawnBubleEvery = 2f;
+    [SerializeField] float mixtSpawnRate = 20f;
+    [SerializeField] float doubleSpawnRate = 20f;
 
 
     private Player playerOne;
@@ -20,9 +22,10 @@ public class SpawnManager : MonoBehaviour
 
     Bounds boundsZoneToSpawn;
 
+    float minDistanceBetweenBubbles = 1f;
     private int playerIdSpawn = 0;
-
     private float timer;
+    private Vector3 lastSpawnPosition = Vector3.zero;
 
 
     private void Start()
@@ -46,34 +49,62 @@ public class SpawnManager : MonoBehaviour
 
     void spawnBuble()
     {
-        GameObject bubble = Instantiate(tmp_buble);
+        
   
         int randomIndex = UnityEngine.Random.Range(0,this.correspondanceSprite.count());
-        Symbole cleAleatoire = this.correspondanceSprite.symboleAtIndex(randomIndex);
+        Symbole symbole = this.correspondanceSprite.symboleAtIndex(randomIndex);
 
-        if (playerIdSpawn % 2 == 0)
-        {
-            bubble.GetComponent<Bubble>().createBubble(cleAleatoire, playerOne.myColorBubble);
-        }
-        else
-        {
-            bubble.GetComponent<Bubble>().createBubble(cleAleatoire, playerTwo.myColorBubble);
-        }
+        this.lastSpawnPosition = playerIdSpawn % 2 == 0 ? this.testH(symbole, playerOne.myColorBubble) : this.testH(symbole, playerTwo.myColorBubble);
 
         playerIdSpawn++;
-        
 
-        /*Changer la position de la bulle*/
-        bubble.transform.position = getRandomPos();
+
+        if (UnityEngine.Random.Range(0, 100) <= doubleSpawnRate)
+            this.spawnBuble();
+
+
+    }
+
+    public Vector3 testH(Symbole symbole,ColorBubble color)
+    {
+        GameObject bubble = Instantiate(tmp_buble);
+
+        if (UnityEngine.Random.Range(0, 100) <= mixtSpawnRate)
+            color = ColorBubble.VIOLET;
+
+        bubble.GetComponent<Bubble>().createBubble(symbole, color);
+        Vector3 bubulePosition = this.getRandomPos();
+        bubble.transform.position = bubulePosition;
+
+        return bubulePosition;
+
     }
 
 
     Vector3 getRandomPos()
     {
-        return new Vector3(
-           UnityEngine.Random.Range(boundsZoneToSpawn.min.x, boundsZoneToSpawn.max.x),
-           UnityEngine.Random.Range(boundsZoneToSpawn.min.y, boundsZoneToSpawn.max.y),
-           UnityEngine.Random.Range(boundsZoneToSpawn.min.z, boundsZoneToSpawn.max.z)
-       );
+        Vector3 randomPosition = Vector3.zero;
+
+        int tmp = 0;
+
+        do
+        {
+            randomPosition = new Vector3(
+               UnityEngine.Random.Range(boundsZoneToSpawn.min.x, boundsZoneToSpawn.max.x),
+               UnityEngine.Random.Range(boundsZoneToSpawn.min.y, boundsZoneToSpawn.max.y),
+               0
+            );
+
+            tmp++;
+
+            if (tmp > 100)
+                break;
+            
+
+
+        } while (Vector3.Distance(randomPosition, lastSpawnPosition) < minDistanceBetweenBubbles);
+
+
+        return randomPosition;
     }
 }

@@ -7,11 +7,16 @@ public class Bubble : MonoBehaviour
     [SerializeField] CorrespondanceCouleur correspondanceCouleur;
     [SerializeField] CorrespondanceSprite correspondanceSprite;
     [SerializeField] float lifeTime = 3f;
-    float timeBeforeDisapearing;
     [SerializeField] SpriteRenderer symboleSpriteRendered;
 
 
-  
+    private float timeBeforeDisapearing;
+    private SpriteRenderer spriteRenderer;
+    private float shrinktime;
+
+
+
+
 
     Symbole mySymbole;
     ColorBubble myColor = ColorBubble.VIOLET;
@@ -19,6 +24,9 @@ public class Bubble : MonoBehaviour
     private void Start()
     {
         timeBeforeDisapearing = lifeTime;
+        this.shrinktime = 2f * lifeTime;
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        StartCoroutine(ShrinkOverTime());
     }
 
    
@@ -76,5 +84,32 @@ public class Bubble : MonoBehaviour
     private void OnDestroy()
     {
         InputManager.instance.removeBubble(this);
+    }
+
+    IEnumerator ShrinkOverTime()
+    {
+        Vector3 originalScale = transform.localScale;
+        Color originalColor = spriteRenderer.color;
+        float timer = 0f;
+
+        while (timer < shrinktime)
+        {
+            float scale = Mathf.Lerp(1f, 0f, timer / shrinktime); // Calculer la nouvelle taille en fonction du temps
+            transform.localScale = originalScale * scale;
+
+
+            float alpha = Mathf.Lerp(1f, 0f, timer / shrinktime); // Calculer le nouvel alpha en fonction du temps
+            Color newColor = new Color(originalColor.r, originalColor.g, originalColor.b, alpha);
+            spriteRenderer.color = newColor;
+
+
+
+            timer += Time.deltaTime;
+            yield return null; // Attendre jusqu'au prochain frame
+        }
+
+
+        // Assurez-vous que l'échelle est à zéro à la fin de la coroutine
+        transform.localScale = Vector3.zero;
     }
 }
