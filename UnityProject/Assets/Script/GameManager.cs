@@ -19,6 +19,9 @@ public class GameManager : MonoBehaviour
     [SerializeField] Sprite plume;
     [SerializeField] Sprite sourire;
 
+    private BarreDeRire mySlider;
+
+
     public Dictionary<Direction, Symbole> correspondanceSymbole =
         new Dictionary<Direction, Symbole>(){ 
             {Direction.HAUT, Symbole.PROUT },
@@ -57,7 +60,7 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        mySlider = FindFirstObjectByType<BarreDeRire>();
     }
 
     public int getScore()
@@ -88,6 +91,8 @@ public class GameManager : MonoBehaviour
             endGame = this.playerTwo.Laught();
             this.score = 50;
         }
+
+        mySlider.updateScore(this.score);
 
         if (endGame)
             this.endParty();
