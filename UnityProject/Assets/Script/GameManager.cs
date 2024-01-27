@@ -61,6 +61,8 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         mySlider = FindFirstObjectByType<BarreDeRire>();
+        if (mySlider == null)
+            throw new System.Exception("Pas de barre de rire ?");
     }
 
     public int getScore()
