@@ -15,7 +15,7 @@ public class SpawnManager : MonoBehaviour
     [SerializeField] float mixtSpawnRate = 20f;
     [SerializeField] float doubleSpawnRate = 20f;
 
-
+    bool shouldSpawnBubble = false;
     private Player playerOne;
     private Player playerTwo;
 
@@ -38,6 +38,8 @@ public class SpawnManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (!shouldSpawnBubble)
+            return;
         timer -= Time.deltaTime;
         if(timer <= 0)
         {
@@ -80,7 +82,10 @@ public class SpawnManager : MonoBehaviour
 
     }
 
-
+    public void setSpawnerActive(bool newState) 
+    {
+        this.shouldSpawnBubble = newState;
+    }
     Vector3 getRandomPos()
     {
         Vector3 randomPosition = Vector3.zero;

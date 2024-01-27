@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 3229160364818227474}
   - component: {fileID: 5547991849177425225}
   - component: {fileID: 8277519849542544752}
+  - component: {fileID: 4848876525426677687}
   m_Layer: 0
   m_Name: Bubble
   m_TagString: Respawn
@@ -102,6 +103,34 @@ MonoBehaviour:
   correspondanceSprite: {fileID: 11400000, guid: e7595510665924fd5aaa18e1f8c85ebe, type: 2}
   lifeTime: 3
   symboleSpriteRendered: {fileID: 6385107440735923681}
+--- !u!114 &4848876525426677687
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 400637377583848021}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 820d791f5302a9544acfe3113058b2b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  eventToReactTo: 1
+  reaction:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 400637377583848021}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1460445630582895227
 GameObject:
   m_ObjectHideFlags: 0
