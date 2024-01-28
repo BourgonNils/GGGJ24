@@ -81,12 +81,14 @@ public class GameManager : MonoBehaviour
         if (this.score <= (0 + valueErroded))
         {
             endGame = this.playerOne.Laught();
-            resetRound();
+            if(!endGame)
+                resetRound();
         }
         else if (this.score >= 100 - valueErroded)
         {
             endGame = this.playerTwo.Laught();
-            resetRound();
+            if (!endGame)
+                resetRound();
         }
         if (endGame)
             this.endParty();
@@ -125,16 +127,22 @@ public class GameManager : MonoBehaviour
 
     private void endParty()
     {
+        StartCoroutine(waitThenPanelGameOver());
         notifyListeners(GameEvent.GAMEOVER);
     }
+    IEnumerator waitThenPanelGameOver()
+    {
+        yield return new WaitForSeconds(3f);
+        PanelGameOver.instance.setVisible();
+    }
 
-    public void startNewGame()
+    public void startNewGame(float delay )
     {
         playerOne.resetLife();
         playerTwo.resetLife();
         zoneCorrespondance.onStart();
         
-        notifyListeners(GameEvent.STARTGAME,4f);
+        notifyListeners(GameEvent.STARTGAME,delay);
     }
 
 
@@ -156,7 +164,7 @@ public class GameManager : MonoBehaviour
             StartCoroutine(waitThenFireEvent(eventToFire, delay));
             return;
         }
-
+        Debug.Log("Event " + eventToFire);
         foreach(ListenerGameEvent listener in listeners)
         {
             listener.notifygameEvent(eventToFire);
@@ -173,6 +181,6 @@ public class GameManager : MonoBehaviour
     public void startGame()
     {
         RandomTalk.instance.startTalking();
-        this.startNewGame();
+        this.startNewGame(4f);
     }
 }

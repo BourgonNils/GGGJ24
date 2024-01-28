@@ -23,6 +23,7 @@ public class PanelGameOver : MonoBehaviour
 
     public void setVisible()
     {
+        Debug.Log("Test");
         gameObject.SetActive(true);
 
         if (GameManager.instance.playerOne.getLife() == 0){
@@ -47,7 +48,7 @@ public class PanelGameOver : MonoBehaviour
 
     public void onClickBtnRestart()
     {
-        GameManager.instance.startNewGame();
+        GameManager.instance.startNewGame(0f);
     }
 
 
