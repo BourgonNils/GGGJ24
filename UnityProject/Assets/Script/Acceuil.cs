@@ -13,6 +13,7 @@ public class Acceuil : MonoBehaviour
     [SerializeField] GameObject buttonRetour;
     [SerializeField] GameObject pancarte;
     [SerializeField] float speed;
+    [SerializeField] GameObject name;
 
     Animator pancartAnimator;
 
@@ -61,6 +62,7 @@ public class Acceuil : MonoBehaviour
         this.rightRido.SetTrigger("Open");
         this.pancartAnimator.SetTrigger("out");
         this.buttonTuto.SetActive(false);
+        this.name.SetActive(false);
 
 
         float elapsedTime = 0f;

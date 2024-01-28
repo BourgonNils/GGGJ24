@@ -842,6 +842,7 @@ MonoBehaviour:
   buttonRetour: {fileID: 8886945645066117113}
   pancarte: {fileID: 2409687952064570069}
   speed: 0
+  name: {fileID: 420210729657101344}
 --- !u!114 &5988003213243613231
 MonoBehaviour:
   m_ObjectHideFlags: 0

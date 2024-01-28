@@ -223,6 +223,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Menu Acceuil
       objectReference: {fileID: 0}
+    - target: {fileID: 7407513968488355470, guid: e35af9eebe43e415ab154a42f0d2a3ee, type: 3}
+      propertyPath: name
+      value: 
+      objectReference: {fileID: 2028013436}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1198,6 +1202,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3edc9984a06ae43ec84361c543817aa4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &2028013436 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 420210729657101344, guid: e35af9eebe43e415ab154a42f0d2a3ee, type: 3}
+  m_PrefabInstance: {fileID: 59617440}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &3057610894560846124
 PrefabInstance:
   m_ObjectHideFlags: 0

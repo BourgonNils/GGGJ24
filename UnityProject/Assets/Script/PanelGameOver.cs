@@ -47,7 +47,7 @@ public class PanelGameOver : MonoBehaviour
 
     public void onClickBtnRestart()
     {
-        GameManager.instance.startNewGame(0f);
+        GameManager.instance.startNewGame();
     }
 
 
