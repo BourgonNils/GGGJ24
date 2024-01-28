@@ -11,6 +11,7 @@ public class Player : MonoBehaviour
     public ColorBubble myColorBubble;
     [SerializeField] ParticleSystem particleLaught;
     [SerializeField] private List<AudioClip> laughtSound;
+    [SerializeField] private AudioSource laugh;
 
     private Animator myAnimator;
 
@@ -58,9 +59,8 @@ public class Player : MonoBehaviour
 
     private void playLaughtSound(){
                 int randIndex = UnityEngine.Random.Range(0, this.laughtSound.Count - 1);
-                AudioSource laugh = GetComponent<AudioSource>();
-                laugh.clip = this.laughtSound[randIndex];
-                laugh.Play();
+                this.laugh.clip = this.laughtSound[randIndex];
+                this.laugh.Play();
     }
 
 
