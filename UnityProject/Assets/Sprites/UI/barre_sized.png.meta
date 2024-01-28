@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: a10d21dc22e9edb4c8ac0af813691ac3
+guid: ec4dfb72fe797cf45bfc037e1b437d03
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -43,13 +43,13 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 100
-  spriteBorder: {x: 604, y: 979, z: 603, w: 28}
+  spriteBorder: {x: 145, y: 184, z: 144, w: 195}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
   alphaIsTransparency: 1
@@ -108,7 +108,28 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: barre_sized_1
+      rect:
+        serializedVersion: 2
+        x: 146
+        y: 218
+        width: 708
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d3b45210cfaa18b4ea0a8ee10493a48f
+      internalID: -855459069
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -119,7 +140,10 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      barre_sized_0: 1138791632
+      barre_sized_1: -855459069
+      barre_sized_2: -299520082
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
