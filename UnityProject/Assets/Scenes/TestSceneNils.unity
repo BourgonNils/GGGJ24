@@ -215,6 +215,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Menu Acceuil
       objectReference: {fileID: 0}
+    - target: {fileID: 8750766607496936743, guid: e35af9eebe43e415ab154a42f0d2a3ee, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1282,9 +1286,29 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 316727938671161140, guid: b0badbddb23bd1947a9574ca0c536b46, type: 3}
+      propertyPath: m_SpriteState.m_PressedSprite
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 316727938671161140, guid: b0badbddb23bd1947a9574ca0c536b46, type: 3}
+      propertyPath: m_SpriteState.m_DisabledSprite
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 316727938671161140, guid: b0badbddb23bd1947a9574ca0c536b46, type: 3}
+      propertyPath: m_SpriteState.m_SelectedSprite
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 894020290309952904, guid: b0badbddb23bd1947a9574ca0c536b46, type: 3}
       propertyPath: m_Name
       value: CanvasGameOver
+      objectReference: {fileID: 0}
+    - target: {fileID: 3426382326984988231, guid: b0badbddb23bd1947a9574ca0c536b46, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5591362154592190741, guid: b0badbddb23bd1947a9574ca0c536b46, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -104.5
       objectReference: {fileID: 0}
     - target: {fileID: 5633701868807929857, guid: b0badbddb23bd1947a9574ca0c536b46, type: 3}
       propertyPath: m_Pivot.x

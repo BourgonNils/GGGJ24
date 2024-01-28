@@ -121,7 +121,6 @@ public class GameManager : MonoBehaviour
     {
         yield return new WaitForSeconds(2.5f);
 
-        TextPrompter.instance.printText("GO !");
         notifyListeners(GameEvent.STARTROUND,1f);
     }
 
