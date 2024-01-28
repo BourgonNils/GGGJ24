@@ -35,4 +35,8 @@ public class SoundEffect : MonoBehaviour
         soundClap.clip = this.clap[randIndedxClap];
         soundClap.Play();
     }
+
+    public void endEventSound(){
+        RandomTalk.instance.EndEventSound();
+    }
 }
