@@ -1756,6 +1756,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: button tuto
       objectReference: {fileID: 0}
+    - target: {fileID: 2550605891039275309, guid: e35af9eebe43e415ab154a42f0d2a3ee, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5776437821255984244, guid: e35af9eebe43e415ab154a42f0d2a3ee, type: 3}
       propertyPath: m_Pivot.x
       value: 0
