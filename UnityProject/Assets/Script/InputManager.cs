@@ -16,7 +16,6 @@ public class InputManager : MonoBehaviour
     private List<Bubble> allBubbles = new List<Bubble>();
     private List<Ballon> allBallons = new List<Ballon>();
     bool isListeningToInput = false;
-    [SerializeField] private List<AudioClip> pops_TODELETE;
 
 
     public delegate void InputPlayer(Player player, Direction dir);
