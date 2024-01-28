@@ -14,7 +14,6 @@ public class InputManager : MonoBehaviour
     public int costMissInput = 3;
 
     bool isListeningToInput = false;
-    [SerializeField] private List<AudioClip> pops_TODELETE;
 
 
     public delegate void InputPlayer(Player player, Direction dir);
