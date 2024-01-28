@@ -11,6 +11,10 @@ public class Bubble : MonoBehaviour
     [SerializeField] float shrinkSpeed = 2f;
     [SerializeField] private float maxScale = 1.2f;
     [SerializeField] private float scaleDuration = 0.3f;
+    [SerializeField] int scoreToGain = 7;
+
+
+    [SerializeField] private List<AudioClip> pops;
 
 
     private float timeBeforeDisapearing;
@@ -25,11 +29,12 @@ public class Bubble : MonoBehaviour
     private void Awake()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
+        InputManager.onInputPlayer += this.handleInputPlayer;
+
     }
     
     private void Start()
     {
-        InputManager.instance.addBubble(this);
 
         timeBeforeDisapearing = lifeTime;
         this.shrinktime = lifeTime*shrinkSpeed;
@@ -37,7 +42,15 @@ public class Bubble : MonoBehaviour
         StartCoroutine(ShrinkOverTime());
     }
 
-   
+
+    private void OnDestroy()
+    {
+        InputManager.onInputPlayer -= this.handleInputPlayer;
+        
+    }
+
+
+
     // Update is called once per frame
     void Update()
     {
@@ -58,32 +71,60 @@ public class Bubble : MonoBehaviour
     }
 
     /*Retourne true si la bulle doit exploser*/
-    public bool receiveInput(Player player, Direction dir)
+    public void handleInputPlayer(Player player, Direction dir)
     {
 
         if (this.shouldExplode(player,dir))
         {
-            InputManager.instance.removeBubble(this);
-            this.GetComponent<SpriteRenderer>().color = this.correspondanceCouleur.getKey(player.myColorBubble);
-            StopAllCoroutines();
-            ParticleSystem gerbeDeoiles = Instantiate(particleOnPopPrefab);
-            gerbeDeoiles.transform.position = this.transform.position;
-            gerbeDeoiles.startColor = this.correspondanceCouleur.getKey(this.myColor);
-            gerbeDeoiles.Play();
-            StartCoroutine(ScaleAnimation());
-            return true;
+            destroyedByPlayer(player);
+            return;
         }
-        return false;
+        return;
     }
 
     bool shouldExplode(Player player, Direction dir)
     {
         bool bonSymbole = InputManager.instance.correspondanceDirection[dir] == this.mySymbole;
         
-        bool bonneCouleur = myColor == ColorBubble.VIOLET 
+        bool bonneCouleur = myColor == ColorBubble.VIOLET
             || myColor == player.GetColorBubble();
 
         return bonSymbole && bonneCouleur;
+    }
+
+    void destroyedByPlayer(Player player)
+    {
+        if(myColor == ColorBubble.VIOLET)
+            this.GetComponent<SpriteRenderer>().color = this.correspondanceCouleur.getKey(player.myColorBubble);
+        
+        
+        StopAllCoroutines();
+        
+        
+        /*Particles*/
+        ParticleSystem gerbeDeoiles = Instantiate(particleOnPopPrefab);
+        gerbeDeoiles.transform.position = this.transform.position;
+        gerbeDeoiles.startColor = this.correspondanceCouleur.getKey(player.myColorBubble);
+        gerbeDeoiles.Play();
+
+        /*Gain score*/
+        GameManager.instance.gainScore(player, this.scoreToGain);
+
+
+        /*Play Sound */
+        if (pops.Count == 0)
+            Debug.LogWarning("Vivien change le son de Input vers bulle");
+        else
+        {
+            int rand = UnityEngine.Random.Range(0, pops.Count - 1);
+            AudioSource effect = GetComponent<AudioSource>();
+            effect.clip = pops[rand];
+            effect.Play();
+            Debug.Log(rand);
+        }
+
+
+        StartCoroutine(ScaleAnimation());
     }
 
     void pop()
