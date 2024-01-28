@@ -15,6 +15,7 @@ public class InputManager : MonoBehaviour
     private List<Bubble> allBubbles = new List<Bubble>();
     private List<Ballon> allBallons = new List<Ballon>();
     bool isListeningToInput = false;
+    [SerializeField] private List<AudioClip> pops;  
 
   
 
@@ -55,6 +56,11 @@ public class InputManager : MonoBehaviour
             if (bubbleExploded)
             {
                 GameManager.instance.gainScore(player, this.score);
+                int rand = UnityEngine.Random.Range(0, pops.Count - 1);
+                AudioSource effect = GetComponent<AudioSource>();
+                effect.clip = pops[rand];
+                effect.Play();
+                Debug.Log(rand);
             }
         }
         if (!bubbleExploded)
