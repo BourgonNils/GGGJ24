@@ -120,7 +120,6 @@ public class GameManager : MonoBehaviour
     public IEnumerator waitThenLaunchNewRound()
     {
         yield return new WaitForSeconds(2.5f);
-
         notifyListeners(GameEvent.STARTROUND,1f);
     }
 
