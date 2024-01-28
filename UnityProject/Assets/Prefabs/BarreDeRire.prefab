@@ -216,15 +216,15 @@ RectTransform:
   m_Children:
   - {fileID: 8897788907636261377}
   - {fileID: 7393312683083332815}
-  - {fileID: 3123301564191051709}
   - {fileID: 278486936182084622}
   - {fileID: 534366618749141375}
+  - {fileID: 3123301564191051709}
   m_Father: {fileID: 3686002502835719657}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 2.3635254, y: 1.9199982}
-  m_SizeDelta: {x: -248.0259, y: -42.6512}
+  m_AnchoredPosition: {x: 2.9091187, y: 0.82910156}
+  m_SizeDelta: {x: -242.571, y: -31.7417}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6218516086045023857
 CanvasRenderer:

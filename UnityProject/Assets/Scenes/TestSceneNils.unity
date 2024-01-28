@@ -999,10 +999,6 @@ PrefabInstance:
       propertyPath: m_AnchorMin.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 9013424299422556674, guid: 4402559b16c76ed4d82486ce392c1736, type: 3}
-      propertyPath: m_Value
-      value: 50
-      objectReference: {fileID: 0}
     - target: {fileID: 9143801082798606226, guid: 4402559b16c76ed4d82486ce392c1736, type: 3}
       propertyPath: m_Name
       value: BarreDeRire
