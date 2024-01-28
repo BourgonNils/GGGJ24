@@ -40,7 +40,6 @@ public class GameManager : MonoBehaviour
         if(zoneCorrespondance == null )
             throw new System.Exception("Pas de zone correspondance ?");
 
-        startNewGame();
     }
 
     public int getScore()
@@ -58,7 +57,7 @@ public class GameManager : MonoBehaviour
     {
         
         if (newErrosion >1 || newErrosion < 0 )
-            throw new System.Exception("Doit être compris entre 0 et 1");
+            throw new System.Exception("Doit ?tre compris entre 0 et 1");
 
         this.percentErrosion += newErrosion;
 
@@ -115,9 +114,9 @@ public class GameManager : MonoBehaviour
         this.score = 50;
         this.percentErrosion = 0;
         mySlider.updateScore(this.score);
-        Debug.Log("Test");
         StartCoroutine(waitThenLaunchNewRound());
     }
+
     public IEnumerator waitThenLaunchNewRound()
     {
         yield return new WaitForSeconds(2.5f);
@@ -160,7 +159,6 @@ public class GameManager : MonoBehaviour
             return;
         }
 
-        Debug.Log("Game Event " + eventToFire);
         foreach(ListenerGameEvent listener in listeners)
         {
             listener.notifygameEvent(eventToFire);
@@ -171,5 +169,11 @@ public class GameManager : MonoBehaviour
     {
         yield return new WaitForSeconds(delay);
         notifyListeners(eventToFire);
+    }
+
+
+    public void startGame()
+    {
+        Debug.Log("strat");
     }
 }
