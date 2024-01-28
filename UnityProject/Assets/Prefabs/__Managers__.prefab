@@ -50,10 +50,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   correspondanceSprite: {fileID: 11400000, guid: e7595510665924fd5aaa18e1f8c85ebe, type: 2}
   zoneToSpawn: {fileID: 0}
+  zoneToSpawnBallon: {fileID: 0}
   tmp_buble: {fileID: 400637377583848021, guid: bb7930daefb8bd1499a064348a53cf58, type: 3}
+  tmp_ballon: {fileID: 2740435981723917955, guid: 2c15e319178fc435493716a991b7e723, type: 3}
   spawnBubleEvery: 1
-  mixtSpawnRate: 20
-  doubleSpawnRate: 20
+  spawVioletRate: 20
+  spawnBallonEvery: 2
+  spawBallonRate: 20
 --- !u!114 &6871806642580872871
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -82,6 +85,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  delay: 0
 --- !u!114 &8066641905192163854
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -110,6 +114,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  delay: 0
 --- !u!114 &1435731876805841394
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -138,6 +143,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+  delay: 0
 --- !u!114 &3628151046746876334
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -166,6 +172,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+  delay: 0
 --- !u!1 &1430508115605134118
 GameObject:
   m_ObjectHideFlags: 0
@@ -261,6 +268,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d8420a330f57924db0925766b240306, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  costMissInput: 3
+  pops_TODELETE: []
 --- !u!114 &4925173186313491933
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -289,6 +298,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+  delay: 0
 --- !u!114 &7872190004879481097
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -317,6 +327,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  delay: 0
 --- !u!114 &7400116076575974989
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -345,6 +356,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  delay: 0
 --- !u!1 &6974883306371591397
 GameObject:
   m_ObjectHideFlags: 0

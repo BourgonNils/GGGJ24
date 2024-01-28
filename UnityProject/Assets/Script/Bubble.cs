@@ -21,6 +21,7 @@ public class Bubble : MonoBehaviour
     private SpriteRenderer spriteRenderer;
     private float shrinktime;
     [SerializeField] ParticleSystem particleOnPopPrefab;
+    bool HasStoppedListeningPlayer = false;
 
     private Symbole mySymbole;
     private ColorBubble myColor = ColorBubble.VIOLET;
@@ -30,10 +31,9 @@ public class Bubble : MonoBehaviour
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
         InputManager.onInputPlayer += this.handleInputPlayer;
-
     }
     
-    private void Start()
+    protected virtual void Start()
     {
 
         timeBeforeDisapearing = lifeTime;
@@ -45,10 +45,17 @@ public class Bubble : MonoBehaviour
 
     private void OnDestroy()
     {
-        InputManager.onInputPlayer -= this.handleInputPlayer;
-        
+        StopAllCoroutines();
+        stopListeningToPlayer();
+
     }
 
+    void stopListeningToPlayer()
+    {
+        if (!HasStoppedListeningPlayer)
+            InputManager.onInputPlayer -= this.handleInputPlayer;
+        HasStoppedListeningPlayer = true;
+    }
 
 
     // Update is called once per frame
@@ -61,7 +68,7 @@ public class Bubble : MonoBehaviour
         }
     }
 
-    public void createBubble(Symbole symbole,ColorBubble color)
+    public void setSymboleAndColor(Symbole symbole,ColorBubble color)
     {
         this.myColor = color;
         mySymbole = symbole;
@@ -73,9 +80,10 @@ public class Bubble : MonoBehaviour
     /*Retourne true si la bulle doit exploser*/
     public void handleInputPlayer(Player player, Direction dir)
     {
-
+        
         if (this.shouldExplode(player,dir))
         {
+            stopListeningToPlayer();
             destroyedByPlayer(player);
             return;
         }
@@ -98,8 +106,8 @@ public class Bubble : MonoBehaviour
             this.GetComponent<SpriteRenderer>().color = this.correspondanceCouleur.getKey(player.myColorBubble);
         
         
-        StopAllCoroutines();
-        
+/*        StopAllCoroutines();
+*/        
         
         /*Particles*/
         ParticleSystem gerbeDeoiles = Instantiate(particleOnPopPrefab);
@@ -127,7 +135,7 @@ public class Bubble : MonoBehaviour
         StartCoroutine(ScaleAnimation());
     }
 
-    void pop()
+    protected void pop()
     {
         Destroy(this.gameObject);
     }

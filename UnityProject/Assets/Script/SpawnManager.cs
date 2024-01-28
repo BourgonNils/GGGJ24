@@ -15,8 +15,8 @@ public class SpawnManager : MonoBehaviour
     [SerializeField] GameObject tmp_ballon;
     [SerializeField] float spawnBubleEvery = 2f;
     [SerializeField] float spawVioletRate = 20f;
-    [SerializeField] float spawnBallonEvery = 2f;
-    [SerializeField] float spawBallonRate = 20f;
+    [SerializeField] float spawnBallonEvery = 1f;
+    [SerializeField] float spawBallonRate = 80f;
 
     bool shouldSpawnBubble = false;
     private Player playerOne;
@@ -66,11 +66,11 @@ public class SpawnManager : MonoBehaviour
             this.spawnBubbleViolet();
         }
 
-        /*if(timerBallon <= 0)
+        if (timerBallon <= 0)
         {
             timerBallon = spawnBallonEvery;
             this.spawnBallon();
-        }*/
+        }
     }
 
 
@@ -101,7 +101,7 @@ public class SpawnManager : MonoBehaviour
     public Vector3 createBubble(Symbole symbole,ColorBubble color)
     {
         GameObject bubble = Instantiate(tmp_buble);
-        bubble.GetComponent<Bubble>().createBubble(symbole, color);
+        bubble.GetComponent<Bubble>().setSymboleAndColor(symbole, color);
         Vector3 bubulePosition = this.getRandomPos();
         bubble.transform.position = bubulePosition;
         return bubulePosition;
@@ -117,7 +117,7 @@ public class SpawnManager : MonoBehaviour
             ColorBubble color = randomColor == 0 ? playerOne.myColorBubble : playerTwo.myColorBubble;
             Symbole symbole = this.correspondanceSprite.symboleAtIndex(randomIndex);
             GameObject ballon = Instantiate(tmp_ballon);
-            ballon.GetComponent<Ballon>().createBallon(symbole, color);
+            ballon.GetComponent<Ballon>().setSymboleAndColor(symbole, color);
             Vector3 ballonPosition = this.randomPosBallon();
             ballon.transform.position = ballonPosition;
         }
