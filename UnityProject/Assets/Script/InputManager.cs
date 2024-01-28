@@ -11,13 +11,18 @@ public class InputManager : MonoBehaviour
 
     public Dictionary<Direction, Symbole> correspondanceDirection = new Dictionary<Direction, Symbole>();
 
-    private int score = 10;
+    public int costMissInput = 3;
+
     private List<Bubble> allBubbles = new List<Bubble>();
     private List<Ballon> allBallons = new List<Ballon>();
     bool isListeningToInput = false;
-    [SerializeField] private List<AudioClip> pops;  
+    [SerializeField] private List<AudioClip> pops_TODELETE;
 
-  
+
+    public delegate void InputPlayer(Player player, Direction dir);
+    public static event InputPlayer onInputPlayer;
+
+
 
     private void Awake()
     {
@@ -42,13 +47,14 @@ public class InputManager : MonoBehaviour
         if (!isListeningToInput)
             return;
 
+        onInputPlayer?.Invoke(player, dir);
+        GameManager.instance.looseScore(player, costMissInput);
+     /*   this.detecteBubble(player, dir);
+        this.detecteBallon(player, dir);*/
 
-        this.detecteBubble(player, dir);
-        this.detecteBallon(player, dir);
-        
     }
 
-    private void  detecteBubble(Player player, Direction dir) {
+    /*private void  detecteBubble(Player player, Direction dir) {
         bool bubbleExploded = false;
         foreach (Bubble bubble in allBubbles)
         {
@@ -65,9 +71,9 @@ public class InputManager : MonoBehaviour
         }
         if (!bubbleExploded)
             this.misinput(player);
-    }
+    }*/
 
-    private void detecteBallon(Player player, Direction dir)
+/*    private void detecteBallon(Player player, Direction dir)
     {
         bool balloonExploded = false;
 
@@ -82,12 +88,12 @@ public class InputManager : MonoBehaviour
         if (!balloonExploded)
             this.misinput(player);
     }
-
+*/
     void misinput(Player player)
     {
         /*Faire perdre des points au joueur en question*/
         Debug.Log(player.name + " miss input");
-        GameManager.instance.looseScore(player, score);
+        GameManager.instance.looseScore(player, costMissInput);
 
     }
     
