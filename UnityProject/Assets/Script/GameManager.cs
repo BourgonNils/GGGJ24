@@ -174,6 +174,7 @@ public class GameManager : MonoBehaviour
 
     public void startGame()
     {
-        Debug.Log("strat");
+        RandomTalk.instance.startTalking();
+        this.startNewGame();
     }
 }
