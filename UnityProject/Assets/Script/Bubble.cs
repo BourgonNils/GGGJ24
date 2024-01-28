@@ -128,7 +128,6 @@ public class Bubble : MonoBehaviour
             AudioSource effect = GetComponent<AudioSource>();
             effect.clip = pops[rand];
             effect.Play();
-            Debug.Log(rand);
         }
 
 
