@@ -22,7 +22,6 @@ public class BackgroundMusic : MonoBehaviour
         }
     }
 
-
     // Start is called before the first frame update
     void Start()
     {
@@ -55,10 +54,6 @@ public class BackgroundMusic : MonoBehaviour
 
     public void startGameMusic(){
         this.StartFadeOut(1F, this.gameMusic);
-    }
-
-    public void startMenuMusic(){
-        this.StartFadeOut(1F, this.menuMusic);
     }
 
     private void StartFadeOut(float duration, AudioClip clip)
