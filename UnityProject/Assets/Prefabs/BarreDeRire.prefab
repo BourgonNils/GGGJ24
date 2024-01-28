@@ -216,15 +216,15 @@ RectTransform:
   m_Children:
   - {fileID: 8897788907636261377}
   - {fileID: 7393312683083332815}
-  - {fileID: 3123301564191051709}
   - {fileID: 278486936182084622}
   - {fileID: 534366618749141375}
+  - {fileID: 3123301564191051709}
   m_Father: {fileID: 3686002502835719657}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 2.3635254, y: 1.9199982}
-  m_SizeDelta: {x: -248.0259, y: -42.6512}
+  m_AnchoredPosition: {x: 2.9091187, y: 0.82910156}
+  m_SizeDelta: {x: -242.571, y: -31.7417}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6218516086045023857
 CanvasRenderer:
@@ -1002,6 +1002,8 @@ GameObject:
   - component: {fileID: 262427420216450682}
   - component: {fileID: 7313032363878032193}
   - component: {fileID: 9013424299422556674}
+  - component: {fileID: 4081244257518413350}
+  - component: {fileID: 1043995857844322882}
   m_Layer: 5
   m_Name: BarreDeRire
   m_TagString: Untagged
@@ -1095,6 +1097,64 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &4081244257518413350
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9143801082798606226}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 820d791f5302a9544acfe3113058b2b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  eventToReactTo: 2
+  reaction:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7313032363878032193}
+        m_TargetAssemblyTypeName: BarreDeRire, Assembly-CSharp
+        m_MethodName: onEndRound
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  delay: 0
+--- !u!114 &1043995857844322882
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9143801082798606226}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 820d791f5302a9544acfe3113058b2b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  eventToReactTo: 3
+  reaction:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7313032363878032193}
+        m_TargetAssemblyTypeName: BarreDeRire, Assembly-CSharp
+        m_MethodName: onStartRound
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  delay: 0
 --- !u!1 &9212803178507853844
 GameObject:
   m_ObjectHideFlags: 0

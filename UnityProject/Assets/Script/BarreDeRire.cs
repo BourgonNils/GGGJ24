@@ -27,4 +27,14 @@ public class BarreDeRire : MonoBehaviour
         errosionGauche.value = newErrosion;
     }
 
+    public void onEndRound()
+    {
+        this.gameObject.SetActive(false);
+    }
+    public void onStartRound()
+    {
+        this.gameObject.SetActive(true);
+    }
+
+
 }

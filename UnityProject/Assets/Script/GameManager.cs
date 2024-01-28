@@ -21,6 +21,7 @@ public class GameManager : MonoBehaviour
     float valueErroded = 0;
 
     List<ListenerGameEvent> listeners = new List<ListenerGameEvent>();
+    bool gameEnded;
 
     public enum GameEvent { GAMEOVER, STARTGAME, ENDROUND, STARTROUND,};
 
@@ -77,19 +78,25 @@ public class GameManager : MonoBehaviour
 
     public void checkIfDead()
     {
+        if (gameEnded)
+            return;
         bool endGame = false;
         if (this.score <= (0 + valueErroded))
         {
             endGame = this.playerOne.Laught();
-            resetRound();
+            if(!endGame)
+                resetRound();
         }
         else if (this.score >= 100 - valueErroded)
         {
             endGame = this.playerTwo.Laught();
-            resetRound();
+            Debug.Log("Endgame " + endGame);
+            if (!endGame)
+                resetRound();
         }
         if (endGame)
             this.endParty();
+        
     }
 
     public void gainScore(Player player,int score)
@@ -119,24 +126,34 @@ public class GameManager : MonoBehaviour
 
     public IEnumerator waitThenLaunchNewRound()
     {
-        yield return new WaitForSeconds(2.5f);
+        yield return new WaitForSeconds(1.8f);
 
-        TextPrompter.instance.printText("GO !");
+        GoPrinter.instance.printGOOOOO();
+/*        TextPrompter.instance.printText("GO !");
+*/       
         notifyListeners(GameEvent.STARTROUND,1f);
     }
 
     private void endParty()
     {
+        gameEnded = true;
+        StartCoroutine(waitThenActivatePanelGameOver());
         notifyListeners(GameEvent.GAMEOVER);
     }
 
-    public void startNewGame()
+    IEnumerator waitThenActivatePanelGameOver()
+    {
+        yield return new WaitForSeconds(3f);
+        PanelGameOver.instance.setVisible();
+    }
+
+    public void startNewGame(float delay)
     {
         playerOne.resetLife();
         playerTwo.resetLife();
         zoneCorrespondance.onStart();
         
-        notifyListeners(GameEvent.STARTGAME,4f);
+        notifyListeners(GameEvent.STARTGAME,delay);
     }
 
 
@@ -159,6 +176,7 @@ public class GameManager : MonoBehaviour
             return;
         }
 
+        Debug.Log("Event " + eventToFire);
         foreach(ListenerGameEvent listener in listeners)
         {
             listener.notifygameEvent(eventToFire);

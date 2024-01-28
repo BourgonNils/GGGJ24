@@ -36,7 +36,10 @@ public class Player : MonoBehaviour
         life = maxLife;
         myAnimator.SetInteger("HP", life);
     }
-
+    public int getLife()
+    {
+        return this.life;
+    }
     public ColorBubble GetColorBubble() 
     { 
         return myColorBubble; 

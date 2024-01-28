@@ -73,7 +73,7 @@ public class Acceuil : MonoBehaviour
         yield return new WaitForSeconds(1.5f);
 
 
-        GameManager.instance.startNewGame();
+        GameManager.instance.startNewGame(4f);
         Destroy(this.gameObject);
 
     }
