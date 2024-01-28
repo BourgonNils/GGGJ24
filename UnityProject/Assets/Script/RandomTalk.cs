@@ -12,7 +12,6 @@ public class RandomTalk : MonoBehaviour
     private bool isEventSoundPlaying = false;
     private bool start = false;
 
-
     public static RandomTalk instance;
 
     void Awake(){
