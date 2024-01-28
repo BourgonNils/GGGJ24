@@ -37,7 +37,7 @@ public class BaffeGenerator : MonoBehaviour
     
     IEnumerator baffeDelayed(int playerId,float delay)
     {
-        yield return new WaitForSeconds(delay);
+        yield return new WaitForSecondsRealtime(delay);
         baffe(playerId);
     }
 

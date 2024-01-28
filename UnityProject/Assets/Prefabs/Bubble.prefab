@@ -105,6 +105,7 @@ MonoBehaviour:
   shrinkSpeed: 1.5
   maxScale: 1.2
   scaleDuration: 0.3
+  particleOnPopPrefab: {fileID: 1792271844748284180, guid: 578ba2fe1392ea740b48fb1e62c15dae, type: 3}
 --- !u!1 &1460445630582895227
 GameObject:
   m_ObjectHideFlags: 0
