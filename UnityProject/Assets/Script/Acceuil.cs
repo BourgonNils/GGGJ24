@@ -31,6 +31,8 @@ public class Acceuil : MonoBehaviour
     IEnumerator startGameAnimation()
     {
 
+        BackgroundMusic.instance.playStart();
+        BackgroundMusic.instance.startGameMusic();
         this.leftRido.SetTrigger("Open");
         this.rightRido.SetTrigger("Open");
         this.pancarte.GetComponent<Animator>().SetTrigger("Open");
@@ -47,8 +49,7 @@ public class Acceuil : MonoBehaviour
 
         yield return new WaitForSeconds(1.5f);
 
-
-        GameManager.instance.startNewGame(4f);
+        GameManager.instance.startGame();
         Destroy(this.gameObject);
 
     }

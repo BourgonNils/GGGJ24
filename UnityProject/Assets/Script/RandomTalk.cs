@@ -10,7 +10,8 @@ public class RandomTalk : MonoBehaviour
     [SerializeField] private AudioSource bobbySound;
     [SerializeField] private AudioSource samySound;
     private bool isEventSoundPlaying = false;
-    private float time = 0F;
+    private bool start = false;
+
 
     public static RandomTalk instance;
 
@@ -31,7 +32,7 @@ public class RandomTalk : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(!this.isPlayerTalking() && !this.isEventSoundPlaying){
+        if(!this.isPlayerTalking() && !this.isEventSoundPlaying && start){
             int randPlay = UnityEngine.Random.Range(0, 1000);
             if(randPlay == 0){
                 this.playRandomTalk();
@@ -78,6 +79,14 @@ public class RandomTalk : MonoBehaviour
     {
         Debug.Log("Fin d'event sonore");
         isEventSoundPlaying = false;
+    }
+
+    public void startTalking(){
+        this.start = true;
+    }
+
+    public void stopTalking(){
+        this.start = false;
     }
 
 
