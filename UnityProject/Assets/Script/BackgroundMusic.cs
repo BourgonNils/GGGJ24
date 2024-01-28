@@ -56,6 +56,10 @@ public class BackgroundMusic : MonoBehaviour
         this.StartFadeOut(1F, this.gameMusic);
     }
 
+    public void startMenuMusic(){
+        this.StartFadeOut(1F, this.menuMusic);
+    }
+
     private void StartFadeOut(float duration, AudioClip clip)
     {
         StartCoroutine(FadeOut(duration, clip));
