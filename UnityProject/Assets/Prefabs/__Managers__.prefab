@@ -760,6 +760,7 @@ GameObject:
   - component: {fileID: 8367539070831947366}
   - component: {fileID: 3680315850342412392}
   - component: {fileID: 5167042639074399145}
+
   m_Layer: 0
   m_Name: BackgroundMusicManager
   m_TagString: Untagged
