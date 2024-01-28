@@ -25,12 +25,16 @@ public class PanelGameOver : MonoBehaviour
     {
         gameObject.SetActive(true);
 
-        if (GameManager.instance.playerOne.getLife() == 0)
+        if (GameManager.instance.playerOne.getLife() == 0){
             panelVictoire2.SetActive(true);
-        else
+            BackgroundMusic.instance.playSamyWin();
+        }
+        else {
             panelVictoire1.SetActive(true);
-
-
+            BackgroundMusic.instance.playBobbyWin();
+        }
+        BackgroundMusic.instance.startMenuMusic();
+        RandomTalk.instance.stopTalking();
     }
 
     public void onStartGame()

@@ -193,6 +193,6 @@ public class GameManager : MonoBehaviour
     public void startGame()
     {
         RandomTalk.instance.startTalking();
-        this.startNewGame();
+        this.startNewGame(4F);
     }
 }
