@@ -9,6 +9,7 @@ public class Player : MonoBehaviour
     private int life ;
     [Range(0, 1)] public int playerId = 0;
     public ColorBubble myColorBubble;
+    [SerializeField] ParticleSystem particleLaught;
 
     private Animator myAnimator;
 
@@ -44,7 +45,8 @@ public class Player : MonoBehaviour
     {
         this.life--;
         myAnimator.SetTrigger("laught");
-        BaffeGenerator.instance.baffe(this.playerId,1);
+        particleLaught.Play();
+        BaffeGenerator.instance.baffe(this.playerId,1.7f);
         return this.life == 0;
     }
 

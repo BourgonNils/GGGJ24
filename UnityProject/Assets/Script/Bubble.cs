@@ -16,16 +16,24 @@ public class Bubble : MonoBehaviour
     private float timeBeforeDisapearing;
     private SpriteRenderer spriteRenderer;
     private float shrinktime;
-
+    [SerializeField] ParticleSystem particleOnPopPrefab;
 
     private Symbole mySymbole;
     private ColorBubble myColor = ColorBubble.VIOLET;
 
+
+    private void Awake()
+    {
+        spriteRenderer = GetComponent<SpriteRenderer>();
+    }
+    
     private void Start()
     {
+        InputManager.instance.addBubble(this);
+
         timeBeforeDisapearing = lifeTime;
         this.shrinktime = lifeTime*shrinkSpeed;
-        spriteRenderer = GetComponent<SpriteRenderer>();
+        
         StartCoroutine(ShrinkOverTime());
     }
 
@@ -46,6 +54,7 @@ public class Bubble : MonoBehaviour
         mySymbole = symbole;
         this.GetComponent<SpriteRenderer>().color = this.correspondanceCouleur.getKey(color);
         this.symboleSpriteRendered.sprite = this.correspondanceSprite.getKey(symbole);
+
     }
 
     /*Retourne true si la bulle doit exploser*/
@@ -57,6 +66,10 @@ public class Bubble : MonoBehaviour
             InputManager.instance.removeBubble(this);
             this.GetComponent<SpriteRenderer>().color = this.correspondanceCouleur.getKey(player.myColorBubble);
             StopAllCoroutines();
+            ParticleSystem gerbeDeoiles = Instantiate(particleOnPopPrefab);
+            gerbeDeoiles.transform.position = this.transform.position;
+            gerbeDeoiles.startColor = this.correspondanceCouleur.getKey(this.myColor);
+            gerbeDeoiles.Play();
             StartCoroutine(ScaleAnimation());
             return true;
         }
@@ -79,10 +92,6 @@ public class Bubble : MonoBehaviour
     }
 
     
-    private void Awake()
-    {
-        InputManager.instance.addBubble(this);
-    }
 
     IEnumerator ShrinkOverTime()
     {
