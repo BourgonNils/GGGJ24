@@ -14,7 +14,9 @@ public class SpawnManager : MonoBehaviour
     [SerializeField] GameObject tmp_buble;
     [SerializeField] GameObject tmp_ballon;
     [SerializeField] float spawnBubleEvery = 2f;
-    [SerializeField] float spawVioletRate = 20f;
+    [SerializeField] float spawMonoColorRate = 20f;
+
+    [SerializeField] float spawVioletRate = 80f;
     [SerializeField] float spawnBallonEvery = 1f;
     [SerializeField] float spawBallonRate = 80f;
 
@@ -41,7 +43,7 @@ public class SpawnManager : MonoBehaviour
         boundsZoneBallon = zoneToSpawnBallon.bounds;
         this.playerOne = GameManager.instance.playerOne;
         this.playerTwo = GameManager.instance.playerTwo;
-        this.spawnVioletEvry = this.spawnBubleEvery + this.spawnBubleEvery / 2;
+        this.spawnVioletEvry = this.spawnBubleEvery;
     }
 
     // Update is called once per frame
@@ -56,19 +58,19 @@ public class SpawnManager : MonoBehaviour
 
         if (timer <= 0)
         {
-            timer = spawnBubleEvery;
+            timer = spawnBubleEvery  * UnityEngine.Random.Range(0.95f,1.1f);
             spawnBuble();
         }
 
         if(timerViolet <= 0)
         {
-            timerViolet = spawnVioletEvry;
+            timerViolet = spawnVioletEvry * UnityEngine.Random.Range(0.95f, 1.1f);
             this.spawnBubbleViolet();
         }
 
         if (timerBallon <= 0)
         {
-            timerBallon = spawnBallonEvery;
+            timerBallon = spawnBallonEvery * UnityEngine.Random.Range(0.95f, 1.1f);
             this.spawnBallon();
         }
     }
@@ -76,26 +78,25 @@ public class SpawnManager : MonoBehaviour
 
     void spawnBuble()
     {
-        
-  
-        int randomIndex = UnityEngine.Random.Range(0,this.correspondanceSprite.count());
+        if (UnityEngine.Random.Range(0, 100) >= this.spawMonoColorRate)
+            return;
+
+            int randomIndex = UnityEngine.Random.Range(0,this.correspondanceSprite.count());
         Symbole symbole = this.correspondanceSprite.symboleAtIndex(randomIndex);
 
         this.lastSpawnPosition = playerIdSpawn % 2 == 0 ? this.createBubble(symbole, playerOne.myColorBubble) : this.createBubble(symbole, playerTwo.myColorBubble);
 
         playerIdSpawn++;
-
-       
     }
 
     void spawnBubbleViolet()
     {
-        if (UnityEngine.Random.Range(0, 100) <= this.spawVioletRate)
-        {
+        if (UnityEngine.Random.Range(0, 100) >= this.spawVioletRate)
+            return;
             int randomIndex = UnityEngine.Random.Range(0, this.correspondanceSprite.count());
             Symbole symbole = this.correspondanceSprite.symboleAtIndex(randomIndex);
             this.createBubble(symbole, ColorBubble.VIOLET);
-        }
+        
     }
 
     public Vector3 createBubble(Symbole symbole,ColorBubble color)
@@ -112,7 +113,7 @@ public class SpawnManager : MonoBehaviour
         if (UnityEngine.Random.Range(0, 100) <= this.spawBallonRate)
         {
             int randomIndex = UnityEngine.Random.Range(0, this.correspondanceSprite.count());
-            int randomColor = UnityEngine.Random.Range(0,1);
+            int randomColor = UnityEngine.Random.Range(0,2);
 
             ColorBubble color = randomColor == 0 ? playerOne.myColorBubble : playerTwo.myColorBubble;
             Symbole symbole = this.correspondanceSprite.symboleAtIndex(randomIndex);

@@ -15,6 +15,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] BarreDeRire mySlider;
     [SerializeField] CorrespondanceVisuelle zoneCorrespondance;
 
+    bool gameEnded = false;
+    bool erosionPaused = true;
 
     float percentErrosion = 0;
     float maxErrosion = 40;
@@ -50,7 +52,8 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        this.addErrosion(0.01f * Time.deltaTime);
+        if(!erosionPaused)
+            this.addErrosion(0.015f * Time.deltaTime);
     }
 
     void addErrosion(float newErrosion)
@@ -77,20 +80,22 @@ public class GameManager : MonoBehaviour
 
     public void checkIfDead()
     {
-        bool endGame = false;
+        if (gameEnded)
+            return;
         if (this.score <= (0 + valueErroded))
         {
-            endGame = this.playerOne.Laught();
-            if(!endGame)
+            gameEnded = this.playerOne.Laught();
+            if(!gameEnded)
                 resetRound();
         }
         else if (this.score >= 100 - valueErroded)
         {
-            endGame = this.playerTwo.Laught();
-            if (!endGame)
+            gameEnded = this.playerTwo.Laught();
+
+            if (!gameEnded)
                 resetRound();
         }
-        if (endGame)
+        if (gameEnded)
             this.endParty();
     }
 
@@ -127,6 +132,7 @@ public class GameManager : MonoBehaviour
 
     private void endParty()
     {
+
         StartCoroutine(waitThenPanelGameOver());
         notifyListeners(GameEvent.GAMEOVER);
     }
@@ -169,6 +175,13 @@ public class GameManager : MonoBehaviour
         {
             listener.notifygameEvent(eventToFire);
         }
+
+
+        if (eventToFire == GameEvent.ENDROUND)
+            erosionPaused = true;
+        if (eventToFire == GameEvent.STARTROUND || eventToFire == GameEvent.STARTGAME)
+            erosionPaused = false;
+                
     }
 
     IEnumerator waitThenFireEvent(GameEvent eventToFire, float delay)

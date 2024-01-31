@@ -2,12 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class PanelGameOver : MonoBehaviour
 {
     public static PanelGameOver instance;
-
-    [SerializeField] Canvas myCanvas;
 
     [SerializeField] GameObject panelVictoire1;
     [SerializeField] GameObject panelVictoire2;
@@ -23,14 +22,15 @@ public class PanelGameOver : MonoBehaviour
 
     public void setVisible()
     {
-        Debug.Log("Test");
         gameObject.SetActive(true);
-
-        if (GameManager.instance.playerOne.getLife() == 0){
+        
+        if (GameManager.instance.playerOne.getLife() <= 0)
+        {
             panelVictoire2.SetActive(true);
             BackgroundMusic.instance.playSamyWin();
         }
-        else {
+        else 
+        {
             panelVictoire1.SetActive(true);
             BackgroundMusic.instance.playBobbyWin();
         }
@@ -48,7 +48,7 @@ public class PanelGameOver : MonoBehaviour
 
     public void onClickBtnRestart()
     {
-        GameManager.instance.startNewGame(0f);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
 

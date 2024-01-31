@@ -54,7 +54,7 @@ public class Player : MonoBehaviour
         RandomTalk.instance.StartEventSound();
         particleLaught.Play();
         BaffeGenerator.instance.baffe(this.playerId,1.7f);
-        return this.life == 0;
+        return this.life <= 0;
     }
 
     private void playLaughtSound(){

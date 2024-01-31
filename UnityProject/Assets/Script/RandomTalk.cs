@@ -68,7 +68,6 @@ public class RandomTalk : MonoBehaviour
     // Méthode pour appeler lorsque l'événement sonore commence
     public void StartEventSound()
     {
-        Debug.Log("event sonore en cours");
         this.samySound.Stop();
         this.bobbySound.Stop();
         isEventSoundPlaying = true;
@@ -77,7 +76,6 @@ public class RandomTalk : MonoBehaviour
     // Méthode pour appeler lorsque l'événement sonore se termine
     public void EndEventSound()
     {
-        Debug.Log("Fin d'event sonore");
         isEventSoundPlaying = false;
     }
 
